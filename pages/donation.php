@@ -44,9 +44,9 @@
                 <?php
             
                     include "../php/connection.php";
-                    $result = $sqlConnection->query("SELECT categoryName AS cat FROM categories;");
+                    $result = $sqlConnection->query("SELECT *FROM categories;");
                     while($categories = $result->fetch_array()){
-                        echo '<button class="category-btn" id="donationFilterBtn">'.$categories[0].'</button><br />';
+                        echo '<button class="category-btn" id="donationFilterBtn"><i class="'.$categories[1].'"></i>'.$categories[0].'</button><br />';
                     }
                     
                 ?>
@@ -179,7 +179,6 @@
     // fetch donations according to categories 
     filterBtns.forEach((current) => {
         current.addEventListener('click', () => {
-            console.log(true);
             categoryView.innerText = current.innerText;
             filter = categoryView.innerText;
             fetchDonationData(filter, searchBar.innerText);
@@ -189,9 +188,8 @@
 
     // fetch donation data through search bar
     searchBar.addEventListener('keyup', (evt) => {
-        console.log(true);
-        console.log(searchBar.innerText);
-        fetchDonationData(filter, searchBar.innerText);
+        console.log(searchBar.value);
+        fetchDonationData(filter, searchBar.value);
     });
     </script>
 </body>

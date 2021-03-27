@@ -525,6 +525,8 @@ header {
 
 .category-icon {
     position: relative;
+    float: left;
+    font-size: 110%;
 }
 
 .category-btn:hover {

@@ -10,10 +10,10 @@
             $donationFetchQuery = "SELECT *FROM donation WHERE category = '$filterData';";
         }
         if(strlen($searchText)){
-            $donationFetchQuery = "SELECT *FROM donation WHERE donationName LIKE '$searchText%';";
+            $donationFetchQuery = "SELECT *FROM donation WHERE donationName LIKE '%$searchText%';";
         }
         if($filterData != "all" && strlen($searchText)){
-            $donationFetchQuery = "SELECT *FROM donation WHERE category = '$filterData' AND donationName LIKE '$searchText%';";
+            $donationFetchQuery = "SELECT *FROM donation WHERE category = '$filterData' AND donationName LIKE '%$searchText%';";
         }
 
 
