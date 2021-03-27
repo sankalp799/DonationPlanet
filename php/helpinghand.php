@@ -1,28 +1,29 @@
 <?php
     class regex {
         public $emailRegex = '/([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,3}$/';
-        public $contactRegex = '/([0-9]{10})$/';
-        public $nameRegex = '/([a-z]{3,20})$/i';
-        public $passwordRegex = '/([a-zA-Z]*+[0-9]*+[_]*)$/';
-        public $valid = false;
+        public $passwordRegex = "/[a-zA-Z]+[\d]+[\_]{1,16}$/";
 
         public function emailValidation($email){
             return preg_match($this->emailRegex, $email);
         }
 
         public function contactValidation($contact){
-            return preg_match($this->contactRegex, $contact);
+            if(strlen(strval($contact)) == 10){
+                return true;
+            }return false;
         }
 
         public function nameValidation($name){
-            return preg_match($this->nameRegex, $name);
+            if(strlen(trim($name)) > 0){
+                return true;
+            }return false;
         }
 
         public function passwordValidation($pass){
-            return preg_match($this->passwordRegex, $pass);
+            if(preg_match($this->passwordRegex, $pass) && strlen($pass) > 3 && strlen($pass) < 16){
+                return true;    
+            }return false;
         }
-
-
     }
 
     class donator extends regex{
@@ -78,9 +79,12 @@
 
             function Autho(){
                 require("../php/connection.php");
-                $result = $sqlConnection->query("SELECT count(email) AS email, count(contact) AS contact FROM donatorcred WHERE email like '$this->email';");
+                $resultNGO = $sqlConnection->query("SELECT count(email) AS email, count(contact) AS contact FROM ngocred WHERE email='$this->email';");
+                $result = $sqlConnection->query("SELECT count(email) AS email, count(contact) AS contact FROM donatorcred WHERE email='$this->email';");
+                
+                $resultNGO=$resultNGO->fetch_object();
                 $resultObj = $result->fetch_object();
-                if(!empty($resultObj->email) && !empty($resultObj->contact)){
+                if(($resultObj->email > 0 || $resultObj->contact > 0) || ($resultNGO->email > 0 || $resultNGO->contact > 0)){
                     return false;
                 }else{
                     return true;
@@ -138,8 +142,11 @@
             function Autho(){
                 require("../php/connection.php");
                 $result = $sqlConnection->query("SELECT count(email) AS email, count(contact) AS contact FROM ngocred WHERE email LIKE '$this->email';");
+                $resultNGO = $sqlConnection->query("SELECT count(email) AS email, count(contact) AS contact FROM donatorcred WHERE email='$this->email';");
+                
+                $resultNGO=$resultNGO->fetch_object();
                 $resultObj = $result->fetch_object();
-                if(!empty($resultObj->email)  && !empty($resultObj->contact)){
+                if(($resultObj->email > 0 || $resultObj->contact > 0) && ($resultNGO->contact > 0 || $resultNGO->email > 0)){
                     return false;
                 }else{
                     return true;

@@ -15,7 +15,6 @@ include "../php/helpinghand.php";
       if($newDonator->inputValidation()){
          if($newDonator->Autho()){
             if($newDonator->comparePassword($_POST['Re-password'])){
-               require("../php/connection.php");
                if($sqlConnection->query($donatorRegistrationQuery)){
                     mkdir($newDonator->directory);
                     header("Location: ../pages/login.php");
@@ -36,7 +35,7 @@ include "../php/helpinghand.php";
          }
       }else{
          // code for invalid input
-         $error = 'Invalid Input Please Try Again <br /> Watch Out Instructions ';
+         $error = '<i class="fas fa-exclamation-circle instruction-open-btn" id="InstructionOpenBtn" onclick="togglePopUp()"></i>Invalid Input Please Try Again <br /> Watch Out Instructions';
          $errorDisplay = true;
       }
    }
@@ -71,11 +70,27 @@ include "../php/helpinghand.php";
         }
     ?>
 
-
+    <div class="row instruction-pop-up" id="forgotPopUpBox">
+        <div class="row instruction-overlay"></div>
+        <div class="row instruction-container">
+            <div class="row instruction-header">
+                <span>Instructions</span>
+                <i class="far fa-times-circle" onclick="togglePopUp()"></i>
+            </div>
+            <div class="row instruction-text">
+                <span class="row"><i class="far fa-dot-circle"></i>Password length 3-16 characters</span>
+                <span class="row"><i class="far fa-dot-circle"></i>Password must contain digits</span>
+                <span class="row"><i class="far fa-dot-circle"></i>Password must contain special characters</span>
+                <span class="row"><i class="far fa-dot-circle"></i>Password must start with alphabet</span>
+                <span class="row"><i class="far fa-dot-circle"></i>Contact must contain 10-11 digit number</span>
+            </div>
+        </div>
+    </div>
     <section class="row donar-registration-section">
-        <form class="donar-registration-form" action="register-donar.php" method="post">
+        <form class="donar-registration-form" action="register-donar.php" method="post" id="registationForm">
+            <div class="registration-label">Create Account</div>
             <div class="input-group">
-                <label class="name">Name</label>
+                <label class="name">Name</label><br />
                 <input class="firstname" type="text" name="username" size=25 /><br />
                 <span class="bar"></span>
             </div>
@@ -84,12 +99,12 @@ include "../php/helpinghand.php";
             <label class="lastlabel">last name</label>-->
 
             <div class="input-group">
-                <label class="name">DOB</label>
+                <label class="name">DOB</label><br />
                 <input class="date" type="date" name="DOB" />
                 <span class="bar"></span>
             </div>
             <div class="input-group">
-                <label>Gender</label>
+                <label>Gender</label><br />
                 <div class="custom-select">
                     <select name="gender">
                         <option value="male">Male</option>
@@ -167,6 +182,10 @@ s          Female
     </section>
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
     <script>
+    let form = document.getElementById('registationForm');
+    let instructionOverlay = document.getElementById('instructionOverlay');
+    let instructionContainer = document.getElementById('instructioncontainer');
+
     let toggleMessageBox = () => {
         console.log("closed");
         document.getElementById("messageBox").classList.remove("active");

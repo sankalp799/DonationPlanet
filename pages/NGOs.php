@@ -34,7 +34,7 @@
             <div class="col span-1-of-2 donations">
 
                 <?php
-                    $fetchQuery = 'SELECT *FROM ngocred where verify = 1';
+                    $fetchQuery = 'SELECT *FROM ngocred';
                     if($result = $sqlConnection->query($fetchQuery)){
                         while($row = $result->fetch_array()){
                             $filePath = end($row);
@@ -49,7 +49,7 @@
                                 <span class="donation-bar-title">contact: </span><span
                                     class="donation-bar-details">'.$row[5].'</span><br />
                                 <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$row[6].", ".$row[7].", ".$row[8].", - ".$row[9].'</span>
-                                <i class="fas fa-map-marked-alt donation-address-icon"></i>
+                                <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation"></i>
                             </div>
                             <img src="'.$filePath.'" class="span-1-of-2 donation-images"/>
                         </div>';
@@ -115,6 +115,35 @@
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
 
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script>
+    // function to return map url
+    let urlPlaceholder = (arr) => {
+        let addressURL =
+            "https://www.google.com/maps/search/";
+        let address = "";
+        for (let element = 0; element < arr.length; element++) {
+            if (element == arr.length - 3) {
+                arr[element] = arr[element].replace(',', '');
+                address = address + arr[element] + "/";
+                break;
+            }
+            address = address + arr[element] + "+";
+        }
+        return addressURL.toString() + address.toString();
+    }
+
+    let NGOs = document.querySelectorAll('#getLocation');
+    let tempAddress = ['napier', 'town,', 'jabalpur,', '-', '482001'];
+    NGOs.forEach((current) => {
+        current.addEventListener('click', () => {
+            let address = current.parentElement;
+            address = address.getElementsByTagName('span')[9].innerText; // get ngo addresss from DOM
+            let addressElements = address.split(" "); // array of ngo/swg address
+            let addressURL = urlPlaceholder(addressElements); // fetch url for google maps
+            window.open(addressURL); // redirect user to google map - ngo location
+        })
+    });
+    </script>
 </body>
 
 </html>

@@ -59,5 +59,4 @@
     }else{
         echo "404 not found";
     }
-    echo "---".$searchText;
 ?>

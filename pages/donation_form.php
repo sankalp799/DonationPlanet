@@ -6,8 +6,9 @@
     $error = "";
     $result = false;
     if(isset($_POST['donationUpload'])){
-        if((string)$_SESSION['type'] == 'donator'){
-            // donation data
+        if(isset($_SESSION['type'])){
+            if(strtolower((string)$_SESSION['type']) == 'donator'){
+                // donation data
             $currentDayDate = date("l jS \of F Y");
             $currentDate = date("d-m-yy");
             $donationName = $_POST['donationName'];
@@ -29,7 +30,7 @@
             $numberOfDonations = (int)$donationsObj->donations;
 
             // donation image types allowed
-            $types_allowed = array('jpeg', 'png');
+            $types_allowed = array('jpeg', 'png', 'jpg');
 
             // donation directory 
             $numberOfDonations = $numberOfDonations + 1;
@@ -93,16 +94,21 @@
                 $errorDisplay = true;
                 $error = "Please Select Donation Type";
             }
+            }else{
+                $errorDisplay = true;
+                $error = "You're Required to login as donator <br />for donation registration purpose";
+            }
         }else{
             $errorDisplay = true;
-            $error = "Please Login as Donator";
+            $error = "Please Login First";
         }
 
         if($result){
             if($sqlConnection->query("UPDATE donatorcred SET donations = $numberOfDonations WHERE id = '$donatorID';")){
                 $sqlConnection->query("INSERT INTO donation values('$donationDir', '$donatorID', '$donationName', '$donationCategory', $qty, '$desc', '$currentDayDate','$currentDate',0, 0);");
                 $_SESSION['donations'] = $numberOfDonations;
-                header('location: ../index.php');
+                $_SESSION['recentDonationID'] = (string)$donationDir;
+                header('location: ../php/donationMsgProcess.php');
             }
         }
     }
@@ -213,23 +219,31 @@
 
     const fileInput = document.getElementById('file-upload');
     let imageViewPort = document.getElementById('donationImageView');
+    let imageContainerArr = [];
     fileInput.addEventListener('change', (evt) => {
         let imageBar = "";
         imageViewPort.innerHTML = imageBar;
 
-
-        for (let imagesLen = --fileInput.files.length; imagesLen >= 0; imagesLen--) {
-
+        // embedd image bar to imageViewPort
+        let embeddImageBar = (elementBar, counter) => {
             setTimeout(() => {
-                imageBar = `<div class="donation-image-bar">
-                    <span class="donation-image-name">` + fileInput.files[imagesLen].name + `</span>
-                    <span class="donation-image-size">` + Math.round(fileInput.files[imagesLen].size / 1024) +
-                    `KB</span>
-                </div>`;
-                imageViewPort.insertAdjacentHTML('beforeend', imageBar);
-            }, 1500);
+                imageViewPort.insertAdjacentHTML('beforeend', elementBar);
+            }, 500 * counter);
         }
 
+        // loop to collect files in array - imageContainerArr[]
+        for (let imagesLen = --fileInput.files.length; imagesLen >= 0; imagesLen--) {
+
+            imageBar = `<div class="donation-image-bar">
+                    <span class="donation-image-name">` + fileInput.files[imagesLen].name + `</span>
+                    <span class="donation-image-size">` + Math.round(fileInput.files[imagesLen].size / 1024) +
+                `KB</span>
+                </div>`;
+
+            imageContainerArr.push(imageBar);
+            embeddImageBar(imageBar, imagesLen);
+            // imageViewPort.insertAdjacentHTML('beforeend', imageBar);
+        }
     });
     </script>
 </body>

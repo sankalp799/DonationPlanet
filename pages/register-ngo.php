@@ -29,7 +29,7 @@
                         $fileType = strtolower(end($fileType));
                         
                         // allowed type
-                        $typeAllowed = array('jpeg', 'png', 'pdf', 'docx', 'pptx');
+                        $typeAllowed = array('jpeg', 'png', 'pdf', 'jpg');
 
                         // file new name
                         $userEmail = explode('@', $_POST['email']);
@@ -77,7 +77,7 @@
       }else{
          //code for invalid input;
          $errorDisplay = true;
-         $error = ' Invalid Input Please Try Again <br /> Watch Out Instructions';
+         $error = '<i class="fas fa-exclamation-circle instruction-open-btn" onclick="togglePopUp()"></i>Invalid Input Please Try Again <br /> Watch Out Instructions';
       }
   }
 ?>
@@ -112,8 +112,26 @@
         }
     ?>
 
+    <div class="row instruction-pop-up" id="forgotPopUpBox">
+        <div class="row instruction-overlay"></div>
+        <div class="row instruction-container">
+            <div class="row instruction-header">
+                <span>Instructions</span>
+                <i class="far fa-times-circle" onclick="togglePopUp()"></i>
+            </div>
+            <div class="row instruction-text">
+                <span class="row"><i class="far fa-dot-circle"></i>Password length 3-16 characters</span>
+                <span class="row"><i class="far fa-dot-circle"></i>Password must contain digits</span>
+                <span class="row"><i class="far fa-dot-circle"></i>Password must contain special characters</span>
+                <span class="row"><i class="far fa-dot-circle"></i>Password must start with alphabet</span>
+                <span class="row"><i class="far fa-dot-circle"></i>Contact must contain 10-11 digit number</span>
+            </div>
+        </div>
+    </div>
+
     <section class="row donar-registration-section">
         <form class="donar-registration-form" action="./register-ngo.php" method="POST" enctype="multipart/form-data">
+            <div class="registration-label">Create Account</div>
             <div class="input-group">
                 <label class="name">Organization </label>
                 <input class="firstname" type="text" name="orgName" /><br />
@@ -171,18 +189,19 @@
                 <span class="bar"></span>
             </div>
             <div class="input-group">
-                <label class="name">State</label>
-
-                <input class="state" type="text" name="state" />
-                <span class="bar"></span>
-            </div>
-            <div class="input-group">
                 <label class="name">City</label>
                 <!--<ion-icon name="location"></ion-icon>-->
 
                 <input class="city" type="text" name="city" />
                 <span class="bar"></span>
             </div>
+            <div class="input-group">
+                <label class="name">State</label>
+
+                <input class="state" type="text" name="state" />
+                <span class="bar"></span>
+            </div>
+
             <div class="input-group">
                 <label class="name">Pincode</label>
 
@@ -221,6 +240,7 @@ s          Female
 
     let togglePopUp = () => {
         document.getElementById("forgotPopUpBox").classList.toggle("active");
+        console.log("open");
     };
     </script>
 </body>

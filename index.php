@@ -1,4 +1,7 @@
 <?php
+
+use PHPMailer\PHPMailer\Exception;
+
 include "php/connection.php";
 include "php/helpinghand.php";
 
@@ -33,15 +36,14 @@ if (isset($_POST['getInTouchSubmission'])) {
     <link rel="stylesheet" text="text/css" href="css/Grid.css" />
     <link rel="stylesheet" text="text/css" href="css/style.css" />
     <link rel="stylesheet" text="text/css" href="css/ionicons.min.css" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet" />
     <title>Helping Hands</title>
 </head>
 
-<body onload="onScroll();">
+<body>
     <header>
         <?php require 'pages/homeNavbar.php'?>
-
-
     </header>
 
     <section class="section-container">
@@ -163,9 +165,35 @@ if (isset($_POST['getInTouchSubmission'])) {
             </div>
         </div>
     </footer>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
     <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script src="/script/app.js" text="text/javascript"></script>
+    <script type="text/javascript">
+    document.getElementById('getInTouchBtn').addEventListener('click', () => {
+
+        let email = document.getElementById('receiverEmailAddress').value;
+        let subject = document.getElementById('emailSubject').value;
+        let body = document.getElementById('emailBody').value;
+
+        if (email.trim() != "" && subject.trim() != "" && body.trim() != "") {
+            Email.send({
+                Host: "smtp.gmail.com",
+                Username: "helpinghands032021@gmail.com",
+                Password: "mcflonomcfloonyloo",
+                To: "helpinghands032021@gmail.com",
+                From: email,
+                Subject: subject,
+                Body: body
+            }).then(
+                message => {
+                    console.log(message);
+                    window.confirm("Message Delivered Successfully We Will get in touch soon.");
+                }
+            );
+        } else {
+            alert('fill up the fields of email');
+        }
+    });
+    </script>
 </body>
 
 </html>

@@ -4,7 +4,6 @@ let filter = categoryView.innerText;
 let searchBar = document.getElementById('donationSearchBar');
 let donationSearchBtn = document.getElementById('donationSearchBtn');
 
-
 // donation data fetch function
 function fetchDonationData(category, searchText) {
     $.ajax({
@@ -22,26 +21,21 @@ function fetchDonationData(category, searchText) {
 
 fetchDonationData("All", "");
 
-/*
+
 // fetch donations according to categories 
 filterBtns.forEach((current) => {
     current.addEventListener('click', () => {
+        console.log(true);
         categoryView.innerText = current.innerText;
         filter = categoryView.innerText;
         fetchDonationData(filter, searchBar.innerText);
+        console.log(filter, searchBar.textContent);
     });
 });
 
 // fetch donation data through search bar
 searchBar.addEventListener('keyup', (evt) => {
+    console.log(true);
     console.log(searchBar.innerText);
     fetchDonationData(filter, searchBar.innerText);
 });
-
-*/
-
-$('#donationSearchBar').keyup(function() {
-    var text = $('#donationSearchBar').val();
-    var exp = new RegExp(text, "i");
-    console.log(exp);
-})
