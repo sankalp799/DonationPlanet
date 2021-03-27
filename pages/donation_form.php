@@ -233,13 +233,12 @@
 
         // loop to collect files in array - imageContainerArr[]
         for (let imagesLen = --fileInput.files.length; imagesLen >= 0; imagesLen--) {
-
+            console.log(fileInput.files[imagesLen]);
             imageBar = `<div class="donation-image-bar">
                     <span class="donation-image-name">` + fileInput.files[imagesLen].name + `</span>
                     <span class="donation-image-size">` + Math.round(fileInput.files[imagesLen].size / 1024) +
                 `KB</span>
                 </div>`;
-
             imageContainerArr.push(imageBar);
             embeddImageBar(imageBar, imagesLen);
             // imageViewPort.insertAdjacentHTML('beforeend', imageBar);

@@ -12,6 +12,7 @@
     <link rel="stylesheet" text="text/css" href="../css/Grid.css" />
     <link rel="stylesheet" text="text/css" href="../css/rest.css" />
     <link rel="stylesheet" text="text/css" href="../css/ionicons.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet" />
     <title>Document</title>
 </head>
@@ -23,7 +24,8 @@
 
     <section class="row NGO-section">
         <form class="row donation-navigator-form">
-            <input type="text" name="search-bar" class="col span-1-of-2 Search-Bar" placeholder="Search" />
+            <input type="text" name="search-bar" class="col span-1-of-2 Search-Bar" placeholder="Search"
+                id="searchNgoBar" />
             <button class="search-bar-icon">
                 <i class="fas fa-search"></i>
             </button>
@@ -31,33 +33,32 @@
         <div class="row donation-section">
             <div class="col span-1-of-2 donation-filter"></div>
 
-            <div class="col span-1-of-2 donations">
-
+            <div class="col span-1-of-2 donations" id="ngoDataSection">
                 <?php
-                    $fetchQuery = 'SELECT *FROM ngocred';
-                    if($result = $sqlConnection->query($fetchQuery)){
-                        while($row = $result->fetch_array()){
-                            $filePath = end($row);
-                            echo '<div class="row donation-bar">
-                            <div class="col span-1-of-2 donation-data">
-                                <span class="donation-bar-title">Organization: </span><span
-                                    class="donation-bar-details">'.$row[1].'</span><br />
-                                <span class="donation-bar-title">Startup Data: </span><span
-                                    class="donation-bar-details">'.$row[2].'</span><br />
-                                <span class="donation-bar-title">E-mail address: </span><span
-                                    class="donation-bar-details">'.$row[3].'</span><br />
-                                <span class="donation-bar-title">contact: </span><span
-                                    class="donation-bar-details">'.$row[5].'</span><br />
-                                <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$row[6].", ".$row[7].", ".$row[8].", - ".$row[9].'</span>
-                                <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation"></i>
-                            </div>
-                            <img src="'.$filePath.'" class="span-1-of-2 donation-images"/>
-                        </div>';
-                        }
-                    }else{
-                        // connection error;
-                    }
-                ?>
+                 $searchQuery = "SELECT *FROM ngocred;";
+                 if($result = $sqlConnection->query($searchQuery)){
+                     while($row = $result->fetch_array()){
+                         $filePath = end($row);
+                         echo '<div class="row donation-bar">
+                         <div class="col span-1-of-2 donation-data">
+                             <span class="donation-bar-title">Organization: </span><span
+                                 class="donation-bar-details">'.$row[1].'</span><br />
+                             <span class="donation-bar-title">Startup Data: </span><span
+                                 class="donation-bar-details">'.$row[2].'</span><br />
+                             <span class="donation-bar-title">E-mail address: </span><span
+                                 class="donation-bar-details">'.$row[3].'</span><br />
+                             <span class="donation-bar-title">contact: </span><span
+                                 class="donation-bar-details">'.$row[5].'</span><br />
+                             <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$row[6].", ".$row[7].", ".$row[8].", - ".$row[9].'</span>
+                             <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation"></i>
+                         </div>
+                         <img src="'.$filePath.'" class="span-1-of-2 donation-images"/>
+                     </div>';
+                     }
+                 }else{
+                     // connection error;
+                 }
+            ?>
                 <!--
                 <div class="row donation-bar">
                     <div class="col span-1-of-2 donation-data">
@@ -133,9 +134,10 @@
     }
 
     let NGOs = document.querySelectorAll('#getLocation');
-    let tempAddress = ['napier', 'town,', 'jabalpur,', '-', '482001'];
+    //let tempAddress = ['napier', 'town,', 'jabalpur,', '-', '482001'];
     NGOs.forEach((current) => {
         current.addEventListener('click', () => {
+            console.log(true);
             let address = current.parentElement;
             address = address.getElementsByTagName('span')[9].innerText; // get ngo addresss from DOM
             let addressElements = address.split(" "); // array of ngo/swg address
@@ -143,6 +145,28 @@
             window.open(addressURL); // redirect user to google map - ngo location
         })
     });
+    /*
+    function fetchNgoData(searchText = "") {
+        $.ajax({
+            url: '../php/fetchNGO.php',
+            method: "POST",
+            data: {
+                search: searchText
+            },
+            success: function(data) {
+                $('#ngoDataSection').html(data);
+            }
+        });
+    }
+
+    fetchNgoData();
+
+    // search ngo by name
+    document.getElementById('searchNgoBar').addEventListener('keyup', () => {
+        let text = document.getElementById('searchNgoBar').value;
+        fetchNgoData(text);
+    });
+    */
     </script>
 </body>
 
