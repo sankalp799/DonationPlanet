@@ -1,0 +1,42 @@
+:root {
+    --theme-color: #2c8ac7;
+    --dark-theme-color: #1d5a81;
+    --default-text-color: #111111;
+    --light-theme-color: #4bacec;
+}
+
+
+/***********
+**** BASIC CSS *****
+*************/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    overflow-x: hidden;
+    font-family: "Lato", "Arial", sans-serif;
+    background-color: rgba(255, 255, 255, 0.747);
+    color: var(--default-text-color);
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+    scroll-behavior: smooth;
+    scrollbar-color: var(--theme-color) var(--default-text-color);
+    scrollbar-width: 5px;
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--default-text-color);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--theme-color);
+}
