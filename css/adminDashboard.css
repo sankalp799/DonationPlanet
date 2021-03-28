@@ -27,11 +27,11 @@
     background-color: rgba(233, 0, 44, 0.7);
 }
 
-.total-bar:nth-child(2) .total-bar-left {
+.total-bar:nth-child(3) .total-bar-left {
     background-color: rgba(255, 206, 86, 0.7);
 }
 
-.total-bar:nth-child(3) .total-bar-left {
+.total-bar:nth-child(2) .total-bar-left {
     background-color: rgba(75, 192, 192, 0.7);
 }
 
@@ -52,11 +52,11 @@
     background-color: rgb(233, 0, 44);
 }
 
-.total-bar:nth-child(2) .total-bar-right {
+.total-bar:nth-child(3) .total-bar-right {
     background-color: rgb(255, 206, 86);
 }
 
-.total-bar:nth-child(3) .total-bar-right {
+.total-bar:nth-child(2) .total-bar-right {
     background-color: rgb(75, 192, 192);
 }
 

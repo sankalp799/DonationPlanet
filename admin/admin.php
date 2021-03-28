@@ -49,17 +49,19 @@
                     </span>
                     <span class="total-bar-right"><?php echo $TotalDonations ?></span>
                 </div>
-                <div class="total-bar">
-                    <span class="total-bar-left">
-                        <div class="total-bar-name">Donators</div>
-                    </span>
-                    <span class="total-bar-right"><?php echo $TotalDonators ?></span>
-                </div>
+
                 <div class="total-bar">
                     <span class="total-bar-left">
                         <div class="total-bar-name">NGOs</div>
                     </span>
                     <span class="total-bar-right"><?php echo $TotalNGOs ?></span>
+                </div>
+
+                <div class="total-bar">
+                    <span class="total-bar-left">
+                        <div class="total-bar-name">Donators</div>
+                    </span>
+                    <span class="total-bar-right"><?php echo $TotalDonators ?></span>
                 </div>
             </div>
 
