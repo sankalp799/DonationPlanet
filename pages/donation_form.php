@@ -37,6 +37,7 @@
             $donationDir = "D-".(string)$donatorContact.(string)$numberOfDonations;
 
             if((string)strtolower($donationCategory) != "--select--"){
+                $totalDonationCategory = $sqlConnection->query("SELECT total FROM categories WHERE categoryName='$donationCategory';")->fetch_object()->total + 1;
                 if((int)$qty > 0){
 
                     // check for donation directory
@@ -106,6 +107,7 @@
         if($result){
             if($sqlConnection->query("UPDATE donatorcred SET donations = $numberOfDonations WHERE id = '$donatorID';")){
                 $sqlConnection->query("INSERT INTO donation values('$donationDir', '$donatorID', '$donationName', '$donationCategory', $qty, '$desc', '$currentDayDate','$currentDate',0, 0);");
+                $sqlConnection->query("UPDATE categories SET total=$totalDonationCategory WHERE categoryName='$donationCategory';");
                 $_SESSION['donations'] = $numberOfDonations;
                 $_SESSION['recentDonationID'] = (string)$donationDir;
                 header('location: ../php/donationMsgProcess.php');

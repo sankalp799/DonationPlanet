@@ -20,7 +20,7 @@ let donationChart = new Chart(chart, {
         labels: categories,
         datasets: [{
             label: "Donations",
-            data: [199, 344, 123, 566, 230, 145],
+            data: donationEachCategory,
             backgroundColor: [
                 'rgba(255, 99, 132, 0.5)',
                 'rgba(54, 162, 235, 0.5)',

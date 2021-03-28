@@ -8,10 +8,13 @@ session_start();
     
     if(isset($_POST['loginCred'])){
         $username = (string)strtolower($_POST['email']);
-        $password = (string)strtolower($_POST['password']);
+        $password = (string)($_POST['password']);
         $donatorLoginQuery = "SELECT id AS id, username AS username, email AS email, pass AS pass, contact AS contact, state AS donatorState,directory as dir,donations AS donations FROM donatorCred WHERE email = '$username';";
         $ngoLoginQuery = "SELECT id AS id, orgName AS username, email AS email, pass AS pass, contact AS contact, verify AS verify FROM ngoCred WHERE email = '$username';";
         
+        //admin object
+        $adminObj = $sqlConnection->query("SELECT *FROM admin WHERE id='$username';")->fetch_object();
+
         $donatorResult = $sqlConnection->query($donatorLoginQuery);
         $ngoResult = $sqlConnection->query($ngoLoginQuery);
         $donatorObj = $donatorResult->fetch_object();
@@ -43,6 +46,16 @@ session_start();
                 $_SESSION['contact'] = (int)$ngoObj->contact;
             }else{
                 // incorrect password
+                $errorDisplay = true;
+                $error = "Sorry, Incorrect Email or Password";
+            }
+        }else if(!empty($adminObj)){
+            if(password_verify($password, $adminObj->pass)){
+                header('location: ../admin/admin.php');
+                $_SESSION['id'] = $adminObj->id;
+                $_SESSION['type'] = 'admin';
+                $_SESSION['name'] = $adminObj->name;
+            }else{
                 $errorDisplay = true;
                 $error = "Sorry, Incorrect Email or Password";
             }

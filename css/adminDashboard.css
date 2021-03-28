@@ -1,0 +1,75 @@
+:root {
+    --theme-color: #2c8ac7;
+    --dark-theme-color: #1d5a81;
+    --default-text-color: #111111;
+    --light-theme-color: #4bacec;
+}
+
+.dashboard-totals {
+    top: 5%;
+    transform: translateY(-5%);
+    position: relative;
+    display: flex;
+    align-item: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.total-bar {
+    width: 30%;
+    display: flex;
+    text-align: center;
+}
+
+.total-bar:nth-child(1) .total-bar-left {
+    background-color: rgba(233, 0, 44, 0.7);
+}
+
+.total-bar:nth-child(2) .total-bar-left {
+    background-color: rgba(255, 206, 86, 0.7);
+}
+
+.total-bar:nth-child(3) .total-bar-left {
+    background-color: rgba(75, 192, 192, 0.7);
+}
+
+.total-bar-left {
+    width: 80%;
+    border-right: 1px solid;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.total-bar-right {
+    width: 20%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: 180%;
+}
+
+.total-bar:nth-child(1) .total-bar-right {
+    background-color: rgb(233, 0, 44);
+}
+
+.total-bar:nth-child(2) .total-bar-right {
+    background-color: rgb(255, 206, 86);
+}
+
+.total-bar:nth-child(3) .total-bar-right {
+    background-color: rgb(75, 192, 192);
+}
+
+.total-bar-name {
+    font-size: 120%;
+    padding-top: 5px;
+}
+
+.chart-container {
+    position: relative;
+    top: 25%;
+    background-color: #fff;
+    width: 80%;
+    left: 10%;
+    transform: translateY(-25%);
+    border-radius: 5px;
+}
