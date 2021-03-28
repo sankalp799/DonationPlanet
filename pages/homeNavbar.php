@@ -8,7 +8,7 @@
 
     <?php
         session_start();
-        if(empty($_SESSION['type'])){
+        if(!isset($_SESSION['type'])){
             echo '<ul class="user-list">
             <li><a href="../pages/registration.php" class="btn signup-btn">Sign Up</a></li>
             <li><a href="../pages/login.php" class="btn login-btn">Login</a></li>

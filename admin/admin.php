@@ -17,6 +17,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../css/normalize.css">
     <link rel="stylesheet" href="../css/Grid.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/adminPanel.css">
     <link rel="stylesheet" href="../css/adminDashboard.css">
     <script src="../script/Chart.min.js"></script>
@@ -71,31 +72,6 @@
 
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
     <script src="../script/adminDashboardApp.js"></script>
-    <script>
-    let panel = document.getElementById('adminMainSection');
-    let adminNavigator = document.querySelectorAll('#adminNavigator li a');
-    let text = 'dashboard';
-
-    adminNavigator.forEach(curr => {
-        curr.addEventListener('click', () => {
-            text = curr.innerHTML.toLowerCase();
-            console.log(text);
-        });
-    });
-
-    let sectionFetch = (pageReqText) => {
-        $.ajax({
-            url: '../admin/sectionReq.php',
-            method: "POST",
-            data: {
-                pageName: text
-            },
-            success: function(data) {
-                $('#adminMainSection').html(data);
-            }
-        });
-    }
-    </script>
 </body>
 
 </html>

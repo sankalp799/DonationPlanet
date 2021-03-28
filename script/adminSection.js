@@ -1,11 +1,15 @@
 let panel = document.getElementById('adminMainSection');
-let adminNavigator = document.querySelectorAll('#adminNavigator li a');
+let adminNavigator = document.querySelectorAll('#adminNavigator li');
 let text = 'dashboard';
+
+console.log(adminNavigator);
 
 adminNavigator.forEach(curr => {
     curr.addEventListener('click', () => {
-        text = curr.innerHTML.toLowerCase();
-        console.log(text);
+        let text = curr.innerHTML.split('<a>');
+        text = text[text.length - 1].split('</a>');
+        text = text[0];
+        sectionFetch(text);
     });
 });
 
@@ -17,7 +21,7 @@ let sectionFetch = (pageReqText) => {
             pageName: text
         },
         success: function(data) {
-            $('#adminMainSection').html(data);
+            $('#adminMainSection').innerHTML = data;
         }
     });
 }

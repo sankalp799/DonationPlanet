@@ -6,6 +6,8 @@
 }
 
 .dashboard-totals {
+    width: 90%;
+    left: 5%;
     top: 5%;
     transform: translateY(-5%);
     position: relative;
@@ -35,7 +37,6 @@
 
 .total-bar-left {
     width: 80%;
-    border-right: 1px solid;
     padding-top: 10px;
     padding-bottom: 10px;
 }
