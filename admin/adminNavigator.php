@@ -21,6 +21,6 @@
 
     <li class="admin-navigator-link">
         <i class="fas fa-sign-out-alt"></i>
-        <a href="../php/logout.php">LOGOUT</a>
+        <a href="logout.php">LOGOUT</a>
     </li>
 </ul>

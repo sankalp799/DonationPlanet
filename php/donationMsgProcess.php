@@ -33,8 +33,8 @@
             </div>
             <div class="donation-confirm-msg">
                 Thanks for providing donation details<br />
-                An copy of your donation details provided to <br />
-                NGOs and Social Working Groups
+                A copy of your donation details is provided to <br />
+                NGOs and Social Working Groups Covered Under Your State
             </div>
         </div>
         <div class="hidden-state" id="state" style="display: none;"><?php echo $state?></div>

@@ -23,7 +23,7 @@
             <?php include "adminNavigator.php" ?>
         </div>
 
-        <div class="admin-dashboard-section">
+        <div class="admin-rest-section">
         </div>
     </section>
 

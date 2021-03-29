@@ -53,7 +53,6 @@ session_start();
             if(password_verify($password, $adminObj->pass)){
                 header('location: ../admin/admin.php');
                 $_SESSION['id'] = $adminObj->id;
-                $_SESSION['type'] = 'admin';
                 $_SESSION['name'] = $adminObj->name;
             }else{
                 $errorDisplay = true;
