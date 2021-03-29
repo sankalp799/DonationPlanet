@@ -16,15 +16,16 @@
 
 <body>
     <header>
-        <?php include "header.php" ?>
+        <?php include "php/header.php" ?>
     </header>
     <section class="row admin-panel-section">
         <div class="admin-navigation-section">
-            <?php include "adminNavigator.php" ?>
+            <?php include "php/adminNavigator.php" ?>
         </div>
 
-        <div class="admin-rest-section">
+        <div class="admin-rest-section" id="adminDonationViewPanel">
             <?php
+            /*
         include "../php/connection.php";
 
         $donationFetchQuery = "SELECT *FROM donation";
@@ -39,6 +40,7 @@
                     if($donationImageDataArray = $sqlConnection->query("SELECT *FROM donationimg WHERE id = '$row[0]';")){
                         $donationImageData = $donationImageDataArray->fetch_array();
                      echo  '<div class="row donation-bar">
+                        <div style="display: none;">'.$row[0].'</div>
                         <div class="col span-1-of-2 donation-data">
                             <span class="donation-bar-title">Name: </span><span
                                 class="donation-bar-details">'.$row[2].'</span><br />
@@ -60,9 +62,9 @@
                         <div class="donation-bar-img">
                         <img src="'.$donationImageData[2].'" class="span-1-of-2 donation-images" />
                         </div>
-                        <div class="donation-bar-btn-section">
-                        <button class="donation-bar-btn"><i class="fas fa-check"></i></button>
-                        <button class="donation-bar-btn"><i class="fas fa-times"></i></button>
+                        <div class="donation-bar-btn-section" id="donationBarBtns">
+                        <button class="donation-bar-btn" verify="1"><i class="fas fa-check"></i></button>
+                        <button class="donation-bar-btn" verify="0"><i class="fas fa-times"></i></button>
                         </div>
                     </div>';
                     }else{
@@ -73,12 +75,49 @@
         }else{
             echo "Connection Error Couldn't Fetch Donation Data Please Check Connection Status";
         }
-    
+        */
 ?>
         </div>
     </section>
 
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
+
+    <script>
+    let editDonationRequest = (id = null, code = null) => {
+        $.ajax({
+            url: 'php/DonationSectionRequest.php',
+            method: "POST",
+            data: {
+                donationID: id,
+                verificationCode: code
+            },
+            success: function(data) {
+                $('#adminDonationViewPanel').html(data);
+            }
+        });
+    }
+    editDonationRequest();
+
+    /*
+    setTimeout(() => {
+        let donationBtns = document.querySelectorAll("#donationBarBtns button");
+        donationBtns.forEach(curr => {
+            curr.addEventListener('click', () => {
+                let donationID = curr.parentNode.parentNode.firstElementChild.innerHTML;
+                let code = curr.getAttribute("verify");
+                console.log(code, donationID);
+                editDonationRequest(donationID, code);
+            });
+        });
+    }, 3000)
+    */
+    let editDonation = (element) => {
+        let donationID = element.parentNode.parentNode.firstElementChild.innerHTML;
+        let code = element.getAttribute("verify");
+        console.log(code, donationID);
+        editDonationRequest(donationID, code);
+    }
+    </script>
 </body>
 
 </html>

@@ -1,25 +1,37 @@
 <?php
-    include "../php/connection.php";
+        include "../../php/connection.php";
+        $id = (string)$_POST['donationID'];
+        $code = $_POST['verificationCode'];
 
-    if(isset($_POST['filter'])){
-        $filterData = strtolower((string)$_POST['filter']);
-        $searchText = (string)trim($_POST['search'], " ");
-        $donationFetchQuery = "SELECT *FROM donation WHERE verify=1;";
-        
-        if($filterData != "all"){
-            $donationFetchQuery = "SELECT *FROM donation WHERE category = '$filterData' AND verify=1;";
-        }
-        if(strlen($searchText)){
-            $donationFetchQuery = "SELECT *FROM donation WHERE donationName LIKE '%$searchText%' AND verify=1;";
-        }
-        if($filterData != "all" && strlen($searchText)){
-            $donationFetchQuery = "SELECT *FROM donation WHERE (category = '$filterData' AND donationName LIKE '%$searchText%') AND(verify=1);";
-        }
+        if($id != NULL && $code != NULL){
 
+            // fetch number of donations 
+            $category = (string)$sqlConnection->query("SELECT category FROM donation WHERE id='$id';")->fetch_object()->category;
+            $totalDonations = (int)$sqlConnection->query("SELECT total FROM categories WHERE categoryName='$category'")->fetch_object()->total;
 
+            if($code == 1){
+                $totalDonations = $totalDonations + 1;
+                $editDonationQuery = "UPDATE donation SET verify=1 WHERE id='$id';";
+            }else if($code == 2){
+                $totalDonations = $totalDonations - 1;
+                $editDonationQuery = "DELETE FROM donation WHERE id='$id';";
+                
+                $deleteDonationImgQuery = "DELETE FROM donationimg WHERE id='$id';";
+
+                if($sqlConnection->query($deleteDonationImgQuery)){
+                    
+                }
+            }
+            $updateCategory = "UPDATE categories SET total=$totalDonations WHERE categoryName='$category';";
+
+            if($sqlConnection->query($editDonationQuery) && $sqlConnection->query($updateCategory)){
+                echo "1";
+            }
+        }
+        $donationFetchQuery = "SELECT *FROM donation WHERE verify=0";
         if($result = $sqlConnection->query($donationFetchQuery)){
-            if(empty($result)){
-                echo "<div class='empty-donation'><img src='../css/img/404.gif'></div>";
+            if($result->num_rows <= 0){
+                echo "<div class='empty-donation-check'><i class='fas fa-check'></i></div><div class='empty-donation'>All Donation Verified</div>";
             }else{
                 while($row = $result->fetch_array()){
                     $donator = $sqlConnection->query("SELECT *FROM donatorcred WHERE id = '$row[1]';");
@@ -28,6 +40,7 @@
                     if($donationImageDataArray = $sqlConnection->query("SELECT *FROM donationimg WHERE id = '$row[0]';")){
                         $donationImageData = $donationImageDataArray->fetch_array();
                      echo  '<div class="row donation-bar">
+                        <div style="display: none;">'.$row[0].'</div>
                         <div class="col span-1-of-2 donation-data">
                             <span class="donation-bar-title">Name: </span><span
                                 class="donation-bar-details">'.$row[2].'</span><br />
@@ -46,7 +59,13 @@
                             <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$donator[6].','.$donator[7].','.$donator[8].' - '.$donator[9].'</span>
                             <ion-icon name="map" class="donation-address-icon"></ion-icon><br />
                         </div>
+                        <div class="donation-bar-img">
                         <img src="'.$donationImageData[2].'" class="span-1-of-2 donation-images" />
+                        </div>
+                        <div class="donation-bar-btn-section" id="donationBarBtns">
+                        <button class="donation-bar-btn" id="addDonation" verify="1" onclick="editDonation(this)"><i class="fas fa-check"></i></button>
+                        <button class="donation-bar-btn" id="removeDonation" verify="2" onclick="editDonation(this)"><i class="fas fa-times"></i></button>
+                        </div>
                     </div>';
                     }else{
                         echo "Donation Not Found";
@@ -56,7 +75,5 @@
         }else{
             echo "Connection Error Couldn't Fetch Donation Data Please Check Connection Status";
         }
-    }else{
-        echo "404 not found";
-    }
+    
 ?>

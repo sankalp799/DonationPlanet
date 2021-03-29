@@ -16,11 +16,11 @@
 
 <body>
     <header>
-        <?php include "header.php" ?>
+        <?php include "php/header.php" ?>
     </header>
     <section class="row admin-panel-section">
         <div class="admin-navigation-section">
-            <?php include "adminNavigator.php" ?>
+            <?php include "php/adminNavigator.php" ?>
         </div>
 
         <div class="admin-rest-section">

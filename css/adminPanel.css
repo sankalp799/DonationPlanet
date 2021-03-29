@@ -143,14 +143,14 @@ bar-view-style
 }
 
 .donation-bar .donation-bar-img {
-    width: 40%;
+    width: 35%;
     position: relative;
 }
 
 .donation-bar .donation-bar-img img {
-    width: 90%;
     position: relative;
-    left: 5%;
+    width: 80%;
+    left: 10%;
     top: 10%;
     height: 80%;
 }
@@ -187,9 +187,55 @@ bar-view-style
 }
 
 .donation-bar-btn-section button:nth-child(1) {
-    background-color: rgba(0, 196, 0, 0.938);
+    background-color: rgb(86, 199, 90);
 }
 
 .donation-bar-btn-section button:nth-child(2) {
-    background-color: rgba(253, 0, 0, 0.938);
+    background-color: rgb(229, 42, 42, 0.85);
+}
+
+.empty-donation,
+.empty-donation-check {
+    position: relative;
+    display: block;
+    top: 30%;
+    text-align: center;
+    width: 50%;
+    left: 50%;
+    transform: translate(-50%, -30%);
+}
+
+.empty-donation {
+    padding: 10px;
+    font-size: 180%;
+    font-weight: 400;
+}
+
+.empty-donation-check {
+    width: 20%;
+    left: 50%;
+    top: 25%;
+    transform: translate(-50%, -25%);
+    height: 20%;
+    border-radius: 50%;
+    font-size: 250%;
+    background: black;
+}
+
+.empty-donation-check i {
+    position: relative;
+    display: block;
+    top: 50%;
+    transform: translateY(-50%) scale(0);
+    color: var(--theme-color);
+    animation: checkUp 1.5s ease-out forwards;
+}
+
+@keyframes checkUp {
+    0% {
+        transform: translateY(-50%) scale(0);
+    }
+    100% {
+        transform: translateY(-50%) scale(1);
+    }
 }

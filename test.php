@@ -1,16 +1,7 @@
 <?php
     include 'php/connection.php';
     //admin object
-    $adminObj = $sqlConnection->query("SELECT id, name, pass FROM admin WHERE id='admin@helpinghand.com';");
-    $adminObj = $adminObj->fetch_array();
-    echo $adminObj[1];
-    /*
-    if(password_verify("mcflono123", $adminObj->pass)){
-        header('location: ../admin/admin.php');
-                $_SESSION['id'] = $adminObj->id;
-                $_SESSION['name'] = $adminObj->name;
-    }else{
-        echo "0";
-    }
-    */
+    $category = $sqlConnection->query("SELECT category FROM donation WHERE id='D-79999676076';")->fetch_object()->category;
+    echo $totalDonations = (int)$sqlConnection->query("SELECT total FROM categories WHERE categoryName='$category'")->fetch_object()->total + 1;
+
 ?>
