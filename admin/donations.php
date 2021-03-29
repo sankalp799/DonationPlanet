@@ -12,6 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/adminPanel.css">
     <script src="../script/Chart.min.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -111,11 +112,35 @@
         });
     }, 3000)
     */
+
+    let sendMail = (email, body) => {
+        Email.send({
+            Host: "smtp.gmail.com",
+            Username: "helpinghands032021@gmail.com",
+            Password: "mcflonomcfloonyloo",
+            To: email + "",
+            From: "helpinghands032021@gmail.com",
+            Subject: "Donation Regarding",
+            Body: body
+        }).then(() => {
+            alert("Verification Sent");
+        });
+    }
+
     let editDonation = (element) => {
         let donationID = element.parentNode.parentNode.firstElementChild.innerHTML;
         let code = element.getAttribute("verify");
         console.log(code, donationID);
         editDonationRequest(donationID, code);
+
+        setTimeout(() => {
+            let donatorEmail = document.getElementById('donatorEmail').innerHTML;
+            if (code == 1)
+                sendMail(donatorEmail, "<h1>Donation Verified</h1>");
+            else
+                sendMail(donatorEmail, "<h1>Donation Rejected</h1>");
+        }, 3000);
+
     }
     </script>
 </body>

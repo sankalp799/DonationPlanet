@@ -5,6 +5,11 @@
 
         if($id != NULL && $code != NULL){
 
+            // donator details for mail
+            $donatorID = (string)$sqlConnection->query("SELECT donatorID AS id FROM donation WHERE id='$id';")->fetch_object()->id;
+            $donatorEmail = (string)$sqlConnection->query("SELECT email FROM donatorcred WHERE id='$donatorID';")->fetch_object()->email;
+            echo "<div id='donatorEmail' style='display: none;'>".$donatorEmail."</div>";
+
             // fetch number of donations 
             $category = (string)$sqlConnection->query("SELECT category FROM donation WHERE id='$id';")->fetch_object()->category;
             $totalDonations = (int)$sqlConnection->query("SELECT total FROM categories WHERE categoryName='$category'")->fetch_object()->total;
@@ -19,13 +24,14 @@
                 $deleteDonationImgQuery = "DELETE FROM donationimg WHERE id='$id';";
 
                 if($sqlConnection->query($deleteDonationImgQuery)){
-                    
+                    // $donatorEmail = $sqlConnection->query("SELECT email FROM donatorcred WHERE contact=$donatorContact;");
+                    // echo "<div id='donatorEmail' style='display: none;'>".$donatorEmail."</div>"
                 }
             }
             $updateCategory = "UPDATE categories SET total=$totalDonations WHERE categoryName='$category';";
 
             if($sqlConnection->query($editDonationQuery) && $sqlConnection->query($updateCategory)){
-                echo "1";
+                
             }
         }
         $donationFetchQuery = "SELECT *FROM donation WHERE verify=0";
