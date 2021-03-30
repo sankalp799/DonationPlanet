@@ -77,7 +77,7 @@ session_start();
     <link rel="stylesheet" text="text/css" href="../css/Grid.css" />
     <link rel="stylesheet" text="text/css" href="../css/rest.css" />
     <link rel="stylesheet" text="text/css" href="../css/autho.css" />
-    <link rel="stylesheet" text="text/css" href="../css/ionicons.min.css" />
+    <link defer rel="stylesheet" text="text/css" href="../css/ionicons.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet" />

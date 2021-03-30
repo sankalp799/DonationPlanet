@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="../css/Grid.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/adminPanel.css">
-    <script src="../script/Chart.min.js"></script>
-    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    <script async src="../script/Chart.min.js"></script>
+    <script defer src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -83,7 +83,7 @@
 
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
 
-    <script>
+    <script defer>
     let editDonationRequest = (id = null, code = null) => {
         $.ajax({
             url: 'php/DonationSectionRequest.php',

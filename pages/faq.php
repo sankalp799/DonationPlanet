@@ -148,9 +148,9 @@ include '../php/connection.php';
         });
     });
     </script>
-    <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
+    <script defer src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
 
-    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script defer src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
 </body>
 
 </html>

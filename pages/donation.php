@@ -9,7 +9,7 @@
     <link rel="stylesheet" text="text/css" href="../css/rest.css" />
     <link rel="stylesheet" text="text/css" href="../css/ionicons.min.css" />
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <title>Document</title>
 </head>
 
