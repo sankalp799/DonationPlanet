@@ -83,7 +83,7 @@
 
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
 
-    <script defer>
+    <script>
     let editDonationRequest = (id = null, code = null) => {
         $.ajax({
             url: 'php/DonationSectionRequest.php',

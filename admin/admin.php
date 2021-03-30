@@ -2,8 +2,8 @@
     include "../php/connection.php";
     $DonationCount = $sqlConnection->query("SELECT categoryName AS name, total FROM categories;");
     $TotalDonators = $sqlConnection->query("SELECT COUNT(id) AS total FROM donatorcred;")->fetch_object()->total;
-    $TotalNGOs = $sqlConnection->query("SELECT COUNT(id) AS total FROM ngocred;")->fetch_object()->total;
-    $TotalDonations = $sqlConnection->query("SELECT COUNT(id) AS total FROM donation;")->fetch_object()->total;
+    $TotalNGOs = $sqlConnection->query("SELECT COUNT(id) AS total FROM ngocred WHERE verify=1;")->fetch_object()->total;
+    $TotalDonations = $sqlConnection->query("SELECT COUNT(id) AS total FROM donation WHERE verify=1;")->fetch_object()->total;
 ?>
 
 <!doctype html>

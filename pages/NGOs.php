@@ -35,7 +35,7 @@
 
             <div class="col span-1-of-2 donations" id="ngoDataSection">
                 <?php
-                 $searchQuery = "SELECT *FROM ngocred;";
+                 $searchQuery = "SELECT *FROM ngocred WHERE verify=1;";
                  if($result = $sqlConnection->query($searchQuery)){
                      while($row = $result->fetch_array()){
                          $filePath = end($row);
