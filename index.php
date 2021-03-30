@@ -165,7 +165,7 @@ if (isset($_POST['getInTouchSubmission'])) {
             </div>
         </div>
     </footer>
-    <script defer src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+    <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
     <script src="/script/app.js" text="text/javascript"></script>
     <script type="text/javascript">
     document.getElementById('getInTouchBtn').addEventListener('click', () => {

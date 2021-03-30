@@ -69,8 +69,8 @@
                         <img src="'.$donationImageData[2].'" class="span-1-of-2 donation-images" />
                         </div>
                         <div class="donation-bar-btn-section" id="donationBarBtns">
-                        <button class="donation-bar-btn" id="addDonation" verify="1" onclick="editDonation(this)"><i class="fas fa-check"></i></button>
-                        <button class="donation-bar-btn" id="removeDonation" verify="2" onclick="editDonation(this)"><i class="fas fa-times"></i></button>
+                        <button class="donation-bar-btn" id="addDonation" verify="1" onclick="editDonation(this)">Approve</button>
+                        <button class="donation-bar-btn" id="removeDonation" verify="2" onclick="editDonation(this)"></i>Reject</button>
                         </div>
                     </div>';
                     }else{
