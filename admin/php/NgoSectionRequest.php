@@ -40,7 +40,7 @@
                                 class="donation-bar-details">'.$row[5].'</span><br />
                             <span class="donation-bar-title">Address: </span><span
                                 class="donation-bar-details">'.$row[6].', '.$row[7].', '.$row[8].', - '.$row[9].'</span>
-                                <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation"></i>
+                                <i class="fas fa-map-marked-alt ngo-address-icon" id="getLocation"></i>
                         </div>
                         <div class="donation-bar-img">
                         <img src="'.end($row).'" class="span-1-of-2 donation-images" />

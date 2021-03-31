@@ -30,7 +30,7 @@ html {
 }
 
 ::-webkit-scrollbar {
-    width: 15px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -158,7 +158,6 @@ bar-view-style
 .donation-bar-btn-section {
     width: fit-content;
     position: relative;
-    border: 1px solid;
     margin-top: 4%;
     display: flex;
     left: 90%;
@@ -174,6 +173,11 @@ bar-view-style
 .donation-bar .donation-bar-details {
     font-size: 80%;
     color: #333;
+}
+
+.ngo-address-icon {
+    cursor: pointer;
+    font-size: 120%;
 }
 
 .donation-bar-btn-section button {

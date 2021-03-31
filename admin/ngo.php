@@ -12,7 +12,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="../css/adminPanel.css">
     <script src="../script/Chart.min.js"></script>
-    <script defer src="https://smtpjs.com/v3/smtp.js"></script>
+    <script src="https://smtpjs.com/v3/smtp.js"></script>
 </head>
 
 <body>
@@ -53,7 +53,7 @@
             Password: "mcflonomcfloonyloo",
             To: email + "",
             From: "helpinghands032021@gmail.com",
-            Subject: "Donation Regarding",
+            Subject: "Account Regarding",
             Body: body
         }).then(() => {
             alert("Verification Sent");
@@ -74,8 +74,39 @@
             else if (code == 2)
                 sendMail(donatorEmail, "<h1>Account Rejected</h1>");
         }, 2000);
-
     }
+
+
+    // function to return ngo location search URL
+    let urlPlaceholder = (arr) => {
+        let addressURL =
+            "https://www.google.com/maps/search/";
+        let address = "";
+        for (let element = 0; element < arr.length; element++) {
+            if (element == arr.length - 3) {
+                arr[element] = arr[element].replace(',', '');
+                address = address + arr[element] + "/";
+                break;
+            }
+            address = address + arr[element] + "+";
+        }
+        return addressURL.toString() + address.toString();
+    }
+
+    setTimeout(() => {
+        let NGOs = document.querySelectorAll('#getLocation');
+        //let tempAddress = ['napier', 'town,', 'jabalpur,', '-', '482001'];
+        NGOs.forEach((current) => {
+            current.addEventListener('click', () => {
+                let address = current.parentElement;
+                address = address.getElementsByTagName('span')[9]
+                    .innerText; // get ngo addresss from DOM
+                let addressElements = address.split(" "); // array of ngo/swg address
+                let addressURL = urlPlaceholder(addressElements); // fetch url for google maps
+                window.open(addressURL); // redirect user to google map - ngo location
+            })
+        });
+    }, 1500);
     </script>
 </body>
 
