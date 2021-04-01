@@ -96,6 +96,7 @@ admin-panel-style
 
 .admin-rest-section {
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .admin-navigator-link {
@@ -249,5 +250,185 @@ bar-view-style
     }
     100% {
         transform: translateY(-50%) scale(1);
+    }
+}
+
+
+/***********
+donator-view style
+*****/
+
+.donator-container {
+    position: relative;
+    left: 8%;
+    top: 5%;
+    transform: translate(-5%, -5%);
+}
+
+.donator {
+    border: 1px solid;
+    width: 80%;
+    display: flex;
+    border-radius: 10px;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
+.donator .donator-batch {
+    position: relative;
+    color: var(--theme-color);
+    border-radius: 10px;
+    padding: 5px;
+}
+
+.donator-batch-icon {
+    position: relative;
+    font-size: 100px;
+    border-radius: 0%;
+    top: 50%;
+    padding: 10px;
+    transform: translateY(-50%);
+}
+
+.donator .donator-info {
+    width: 85%;
+    border-right: 1px solid;
+    padding: 10px;
+}
+
+.donator-info div {
+    display: flex;
+    padding-bottom: 6px;
+}
+
+.donator-info div span:nth-child(1) {
+    text-transform: uppercase;
+    font-size: 80%;
+    font-weight: bold;
+}
+
+.donator-info div span:nth-child(2) {
+    font-size: 80%;
+    padding-left: 10px;
+}
+
+
+/***********
+faq-admin-section
+******/
+
+.push-query-form {
+    padding: 10px;
+    box-shadow: 4px 4px 4px 4px rgba(17, 17, 17, 0.432);
+    width: 80%;
+    position: relative;
+    top: 30%;
+    left: 50%;
+    border-radius: 5px;
+    transform: translate(-50%, -50%);
+}
+
+.push-query-form div {
+    position: relative;
+    padding: 20px;
+    width: 80%;
+    left: 10%;
+}
+
+.push-query-form-label {
+    text-transform: uppercase;
+    font-size: 120%;
+    letter-spacing: 1px;
+}
+
+.push-query-form div input {
+    padding: 2px;
+    width: 65%;
+    outline: none;
+    background: transparent;
+    border: 1p solid black;
+    border-radius: 4px;
+}
+
+.push-query-form textarea {
+    padding: 2px;
+    border: 1px solid black;
+    width: 65%;
+    outline: none;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.push-query-form div button {
+    padding: 10px 20px;
+    position: relative;
+    width: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: transparent;
+    outline: none;
+    border: 1px solid;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 120%;
+    transition: 700ms ease-in-out;
+    cursor: pointer;
+}
+
+.push-query-form div button:hover {
+    background: var(--theme-color);
+}
+
+.fly-container {
+    position: relative;
+    font-size: 20px;
+    height: 5vh;
+    visibility: visible;
+}
+
+.overlay-container {
+    width: 110%;
+    position: absolute;
+    left: -10%;
+    top: 0%;
+    z-index: 100;
+    height: 5vh;
+    background-color: #f7f7f7;
+    animation: slideSide 5s ease-out forwards;
+}
+
+.fly-text {
+    position: relative;
+    height: 5vh;
+    left: 0%;
+    top: 0%;
+    z-index: 10;
+    width: fit-content;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 120%;
+    color: var(--theme-color);
+    padding-top: 10px;
+}
+
+.fly-container i {
+    font-size: 30px;
+    width: 5%;
+    color: var(--theme-color);
+    background-color: transparent;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+@keyframes slideSide {
+    0% {
+        left: -10%;
+    }
+    72% {
+        left: 72%;
+    }
+    100% {
+        left: 110%;
     }
 }

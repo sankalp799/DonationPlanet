@@ -18,6 +18,10 @@
         <a href="../../admin/donators.php">Donators</a>
     </li>
 
+    <li class="admin-navigator-link">
+        <i class="far fa-question-circle"></i>
+        <a href="../../admin/faqSection.php">Faq</a>
+    </li>
 
     <li class="admin-navigator-link">
         <i class="fas fa-sign-out-alt"></i>

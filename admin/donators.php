@@ -1,3 +1,7 @@
+<?php 
+    include '../php/connection.php';
+?>
+
 <!doctype html>
 <html class="no-js" lang="">
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
@@ -24,7 +28,47 @@
         </div>
 
         <div class="admin-rest-section">
-
+            <div class="donator-container">
+                <?php
+                    if($donators = $sqlConnection->query("SELECT *FROM donatorcred;")){
+                        while($arr = $donators->fetch_array()){
+                            echo '<div class="donator">
+                            <span class="donator-batch"><i class="fas fa-id-badge donator-batch-icon"></i></span>
+                            <span class="donator-info">
+                                <div>
+                                    <span>ID: </span>
+                                    <span>'.$arr[0].'</span>
+                                </div>
+                                <div>
+                                    <span>Donations: </span>
+                                    <span>'.$arr[11].'</span>
+                                </div>
+                                <div>
+                                    <span>Name: </span>
+                                    <span>'.$arr[1].'</span>
+                                </div>
+                                <div>
+                                    <span>Email: </span>
+                                    <span>'.$arr[4].'</span>
+                                </div>
+                                <div>
+                                    <span>Contact: </span>
+                                    <span>'.$arr[5].'</span>
+                                </div>
+                                <div>
+                                    <span>Address: </span>
+                                    <span>'.$arr[6].', '.$arr[7].', '.$arr[8].' - '.$arr[9].'</span>
+                                </div>
+                                <div>
+                                    <span>Directory Path: </span>
+                                    <span>'.$arr[10].'</span>
+                                </div>
+                            </span>
+                        </div>';
+                        }
+                    }            
+                ?>
+            </div>
         </div>
     </section>
 
