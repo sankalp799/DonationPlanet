@@ -5,7 +5,7 @@
     $pushFaqQuery = "INSERT INTO faq VALUES('$question', '$ans');";
     if($sqlConnection->query($pushFaqQuery)){
         echo '
-        <div class="overlay-container"><i class="fas fa-paper-plane"></i>
+        <div class="overlay-container"><i class="fas fa-fighter-jet"></i>
 
         </div>
 
