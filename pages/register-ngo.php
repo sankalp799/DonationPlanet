@@ -42,7 +42,7 @@
                         //check file type
                         if(in_array($fileType, $typeAllowed)){
                             if(move_uploaded_file($fileTmp, $fileDestination)){
-                                $ngoRegistrationQuery = "INSERT INTO ngocred VALUES('$id', '$newNGO->orgName', '$newNGO->startupDate', '$newNGO->email', '$password', $newNGO->contact, '$newNGO->address', '$newNGO->city', '$newNGO->state', $newNGO->pinCode, '$newNGO->registeredOn', 0, '$fileNewName', '$fileDestination');";
+                                $ngoRegistrationQuery = "INSERT INTO ngocred VALUES('$id', '$newNGO->orgName', '$newNGO->startupDate', '$newNGO->email', '$password', $newNGO->contact, '$newNGO->address', '$newNGO->city', '$newNGO->state', $newNGO->pinCode, '$newNGO->registeredOn', 0, '$fileNewName', '$fileDestination',0);";
                                 require('../php/connection.php');
                                 if($sqlConnection->query($ngoRegistrationQuery)){
                                     header("Location: ../pages/login.php");

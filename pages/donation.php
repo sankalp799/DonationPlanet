@@ -173,7 +173,6 @@
             }
         });
     }
-
     fetchDonationData("All", "");
 
 

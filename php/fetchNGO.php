@@ -2,15 +2,20 @@
     include "../php/connection.php";
 
     $searchText = trim((string)($_POST['search']));
-    $searchQuery = "SELECT *FROM ngocred";
+    $searchQuery = "SELECT *FROM ngocred WHERE verify=1";
     if($searchText != ""){
-        $searchQuery = "SELECT *FROM ngocred WHERE orgName LIKE '%$searchText%';";
+        $searchQuery = "SELECT *FROM ngocred WHERE orgName LIKE '%$searchText%' AND verify=1;";
     }
 
 
     if($result = $sqlConnection->query($searchQuery)){
         while($row = $result->fetch_array()){
-            $filePath = end($row);
+            $email = explode('@',$row[3]);
+            $EmailName = (string)$email[0];
+               for($iterator = (int)floor((strlen($EmailName)/2)); $iterator < strlen($EmailName); $iterator++){
+                   $EmailName[$iterator] = '*';
+               }
+            $email = (string)($EmailName . '@' . $email[1]);
             echo '<div class="row donation-bar">
             <div class="col span-1-of-2 donation-data">
                 <span class="donation-bar-title">Organization: </span><span
@@ -18,13 +23,13 @@
                 <span class="donation-bar-title">Startup Data: </span><span
                     class="donation-bar-details">'.$row[2].'</span><br />
                 <span class="donation-bar-title">E-mail address: </span><span
-                    class="donation-bar-details">'.$row[3].'</span><br />
+                    class="donation-bar-details">'.$email.'</span><br />
                 <span class="donation-bar-title">contact: </span><span
                     class="donation-bar-details">'.$row[5].'</span><br />
                 <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$row[6].", ".$row[7].", ".$row[8].", - ".$row[9].'</span>
-                <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation"></i>
+                <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation" onclick="ngoGeoLocation(this)"></i>
             </div>
-            <img src="'.$filePath.'" class="span-1-of-2 donation-images"/>
+            <img src="'.$row[13].'" class="span-1-of-2 donation-images"/>
         </div>';
         }
     }else{

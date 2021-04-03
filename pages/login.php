@@ -10,7 +10,7 @@ session_start();
         $username = (string)strtolower($_POST['email']);
         $password = (string)($_POST['password']);
         $donatorLoginQuery = "SELECT id AS id, username AS username, email AS email, pass AS pass, contact AS contact, state AS donatorState,directory as dir,donations AS donations, emailVerified FROM donatorCred WHERE email = '$username';";
-        $ngoLoginQuery = "SELECT id AS id, orgName AS username, email AS email, pass AS pass, contact AS contact, verify AS verify FROM ngoCred WHERE email = '$username';";
+        $ngoLoginQuery = "SELECT id AS id, orgName AS username, email AS email, pass AS pass, contact AS contact, verify AS verify, emailVerified FROM ngoCred WHERE email = '$username';";
         
         //admin object
         $adminObj = $sqlConnection->query("SELECT *FROM admin WHERE id='$username';")->fetch_object();
@@ -45,12 +45,19 @@ session_start();
                 }
         }else if(!empty($ngoObj)){
             if(password_verify($password, $ngoObj->pass)){
-                header('Location: ../index.php');
-                $_SESSION['id'] = (string)$ngoObj->id;
-                $_SESSION['username'] = (string)$ngoObj->username;
-                $_SESSION['type'] = 'ngo';
-                $_SESSION['email'] = (string)$ngoObj->email;
-                $_SESSION['contact'] = (int)$ngoObj->contact;
+                if((int)$ngoObj->emailVerified){
+                    header('Location: ../index.php');
+                    $_SESSION['id'] = (string)$ngoObj->id;
+                    $_SESSION['username'] = (string)$ngoObj->username;
+                    $_SESSION['type'] = 'ngo';
+                    $_SESSION['email'] = (string)$ngoObj->email;
+                    $_SESSION['contact'] = (int)$ngoObj->contact;
+                }else{
+                    $errorDisplay = true;
+                    $userEmailAddress = (string)$ngoObj->email;
+                    $error = "You are required to verify the Email Address<br /> <button onclick='userEmailVerificationRequest()'>verify</button><br /><p style='display: none;' id='userVerificationEmail'>".$userEmailAddress."</p>";
+                
+                }
             }else{
                 // incorrect password
                 $errorDisplay = true;

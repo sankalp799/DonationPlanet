@@ -34,31 +34,7 @@
             <div class="col span-1-of-2 donation-filter"></div>
 
             <div class="col span-1-of-2 donations" id="ngoDataSection">
-                <?php
-                 $searchQuery = "SELECT *FROM ngocred WHERE verify=1;";
-                 if($result = $sqlConnection->query($searchQuery)){
-                     while($row = $result->fetch_array()){
-                         $filePath = end($row);
-                         echo '<div class="row donation-bar">
-                         <div class="col span-1-of-2 donation-data">
-                             <span class="donation-bar-title">Organization: </span><span
-                                 class="donation-bar-details">'.$row[1].'</span><br />
-                             <span class="donation-bar-title">Startup Data: </span><span
-                                 class="donation-bar-details">'.$row[2].'</span><br />
-                             <span class="donation-bar-title">E-mail address: </span><span
-                                 class="donation-bar-details">'.$row[3].'</span><br />
-                             <span class="donation-bar-title">contact: </span><span
-                                 class="donation-bar-details">'.$row[5].'</span><br />
-                             <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$row[6].", ".$row[7].", ".$row[8].", - ".$row[9].'</span>
-                             <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation"></i>
-                         </div>
-                         <img src="'.$filePath.'" class="span-1-of-2 donation-images"/>
-                     </div>';
-                     }
-                 }else{
-                     // connection error;
-                 }
-            ?>
+
                 <!--
                 <div class="row donation-bar">
                     <div class="col span-1-of-2 donation-data">
@@ -133,19 +109,22 @@
         return addressURL.toString() + address.toString();
     }
 
-    let NGOs = document.querySelectorAll('#getLocation');
-    //let tempAddress = ['napier', 'town,', 'jabalpur,', '-', '482001'];
-    NGOs.forEach((current) => {
-        current.addEventListener('click', () => {
-            console.log(true);
-            let address = current.parentElement;
-            address = address.getElementsByTagName('span')[9].innerText; // get ngo addresss from DOM
-            let addressElements = address.split(" "); // array of ngo/swg address
-            let addressURL = urlPlaceholder(addressElements); // fetch url for google maps
-            window.open(addressURL); // redirect user to google map - ngo location
-        })
-    });
-    /*
+    //ngo geolocation 
+    let ngoGeoLocation = (element) => {
+        // let NGOs = document.querySelectorAll('#getLocation');
+        // NGOs.forEach((current) => {
+        // current.addEventListener('click', () => {
+        console.log(true);
+        let address = element.parentElement;
+        address = address.getElementsByTagName('span')[9]
+            .innerText; // get ngo addresss from DOM
+        let addressElements = address.split(" "); // array of ngo/swg address
+        let addressURL = urlPlaceholder(addressElements); // fetch url for google maps
+        window.open(addressURL); // redirect user to google map - ngo location
+        // });
+        // });
+    }
+
     function fetchNgoData(searchText = "") {
         $.ajax({
             url: '../php/fetchNGO.php',
@@ -166,9 +145,6 @@
         let text = document.getElementById('searchNgoBar').value;
         fetchNgoData(text);
     });
-    */
-
-    //
     </script>
 </body>
 
