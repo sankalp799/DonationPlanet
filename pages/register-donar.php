@@ -11,7 +11,7 @@ include "../php/helpinghand.php";
       $newDonator = new donator($_POST['username'], $_POST['DOB'], $_POST['gender'], $_POST['password'], $_POST['email'], $_POST['contact'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['pincode']);
       $password = $newDonator->getPassword();
       $id = $newDonator->getID();
-      $donatorRegistrationQuery = "INSERT INTO donatorcred VALUES('$id', '$newDonator->name', '$password', '$newDonator->DOB', '$newDonator->email', $newDonator->contact, '$newDonator->address', '$newDonator->city', '$newDonator->state', $newDonator->pinCode, '$newDonator->directory',0);";
+      $donatorRegistrationQuery = "INSERT INTO donatorcred VALUES('$id', '$newDonator->name', '$password', '$newDonator->DOB', '$newDonator->email', $newDonator->contact, '$newDonator->address', '$newDonator->city', '$newDonator->state', $newDonator->pinCode, '$newDonator->directory',0,0);";
       if($newDonator->inputValidation()){
          if($newDonator->Autho()){
             if($newDonator->comparePassword($_POST['Re-password'])){

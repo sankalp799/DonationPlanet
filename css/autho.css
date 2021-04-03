@@ -690,28 +690,43 @@ MESSAGE-CONTAINER CSS
     background-color: rgba(236, 84, 84, 0.911);
 }
 
+.message-error button {
+    padding: 5px 20px;
+    outline: none;
+    border: 1px solid;
+    cursor: pointer;
+    margin-top: 5px;
+    font-size: 110%;
+    text-transform: uppercase;
+    background-color: transparent;
+    position: absolute;
+    top: 90%;
+    transform: translate(-50%, -50%);
+}
+
 .message-container.active {
     display: flex;
-    height: 10vh;
+    height: 12vh;
+    width: 100%;
 }
 
 .message-error {
     color: var(--default-text-color);
     padding: 10px 5px;
-    position: relative;
+    position: absolute;
     left: 50%;
     top: 10%;
     transform: translateX(-50%);
 }
 
 .message-close-btn {
-    position: relative;
+    position: absolute;
+    display: block;
     cursor: pointer;
-    left: 73%;
-    top: 10%;
-    margin: 0;
-    padding: 0;
     font-size: 40px;
+    left: 98%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 

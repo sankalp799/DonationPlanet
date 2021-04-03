@@ -70,12 +70,22 @@
 ?>
 
 <?php
+include 'connection.php';
 session_start();
 $errorDisplay=false;
 $error="";
+$accountVerification = (int)($_SESSION['accountVerification']);
+$userEmail = (string)$_SESSION['tempEmail'];
+
 if(isset($_POST['submit'])){
     if((int)$_SESSION['tempOTP'] == (int)$_POST['one-time-password']){
-        header('location: ../php/resetPasswordProcess.php');
+        if($accountVerification){
+            if($sqlConnection->query("UPDATE donatorcred SET emailVerified=1 WHERE email='$userEmail';")){
+                header('location: ../pages/login.php');
+            }
+        }else{
+            header('location: ../php/resetPasswordProcess.php');
+        }
     }else{
         $errorDisplay=true;
         $error="Incorrect OTP Please Try Again";

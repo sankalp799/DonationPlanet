@@ -9,7 +9,7 @@ session_start();
     if(isset($_POST['loginCred'])){
         $username = (string)strtolower($_POST['email']);
         $password = (string)($_POST['password']);
-        $donatorLoginQuery = "SELECT id AS id, username AS username, email AS email, pass AS pass, contact AS contact, state AS donatorState,directory as dir,donations AS donations FROM donatorCred WHERE email = '$username';";
+        $donatorLoginQuery = "SELECT id AS id, username AS username, email AS email, pass AS pass, contact AS contact, state AS donatorState,directory as dir,donations AS donations, emailVerified FROM donatorCred WHERE email = '$username';";
         $ngoLoginQuery = "SELECT id AS id, orgName AS username, email AS email, pass AS pass, contact AS contact, verify AS verify FROM ngoCred WHERE email = '$username';";
         
         //admin object
@@ -22,16 +22,23 @@ session_start();
         
         if(!empty($donatorObj)){
             if(password_verify($password, $donatorObj->pass)){
-                    header('Location: ../index.php');
-                    $_SESSION['id'] = (string)$donatorObj->id;
-                    $_SESSION['username'] = (string)$donatorObj->username;
-                    $_SESSION['type'] = 'donator';
-                    $_SESSION['email'] = (string)$donatorObj->email;
-                    $_SESSION['contact'] = (int)$donatorObj->contact;
-                    $_SESSION['donations'] = (int)$donatorObj->donations;
-                    $_SESSION['dir'] = (string)$donatorObj->dir;
-                    $_SESSION['state'] = (string)$donatorObj->donatorState;
-                    $_SESSION['recentDonationID'] = "";
+                    if((int)$donatorObj->emailVerified){
+                        header('Location: ../index.php');
+                        $_SESSION['id'] = (string)$donatorObj->id;
+                        $_SESSION['username'] = (string)$donatorObj->username;
+                        $_SESSION['type'] = 'donator';
+                        $_SESSION['email'] = (string)$donatorObj->email;
+                        $_SESSION['contact'] = (int)$donatorObj->contact;
+                        $_SESSION['donations'] = (int)$donatorObj->donations;
+                        $_SESSION['dir'] = (string)$donatorObj->dir;
+                        $_SESSION['state'] = (string)$donatorObj->donatorState;
+                        $_SESSION['recentDonationID'] = "";
+                    }else{
+                        // email verification link
+                        $errorDisplay = true;
+                        $userEmailAddress = (string)$donatorObj->email;
+                        $error = "You are required to verify the Email Address<br /> <button onclick='userEmailVerificationRequest()'>verify</button><br /><p style='display: none;' id='userVerificationEmail'>".$userEmailAddress."</p>";
+                    }
                 }else{
                     $errorDisplay = true;
                     $error = "Incorrect Password";
@@ -221,6 +228,36 @@ session_start();
     </footer>
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
     <script>
+    let sendOTP = (email, subject, OTP, accountVerification, callBack) => {
+        Email.send({
+            Host: "smtp.gmail.com",
+            Username: "helpinghands032021@gmail.com",
+            Password: "mcflonomcfloonyloo",
+            To: email + "",
+            From: "helpinghands032021@gmail.com",
+            Subject: subject,
+            Body: "<h1>OTP: " + OTP + "</h1>"
+        }).then(() => {
+            callBack(email, OTP, accountVerification);
+        });
+    }
+
+    // callback function to verify the account 
+    let ajaxAccountVerificationRequest = (userEmail, otp, accountVerification) => {
+        $.ajax({
+            url: '../php/account_reply.php',
+            method: 'POST',
+            data: {
+                email: userEmail,
+                OTP: otp,
+                accountVerification: accountVerification
+            },
+            success: function() {
+                window.location.assign('../php/account_recovery.php');
+            }
+        });
+    }
+
     let toggleMessageBox = () => {
         console.log("closed");
         document.getElementById("messageBox").classList.remove("active");
@@ -234,30 +271,17 @@ session_start();
     document.getElementById('fetchForgotFormData').addEventListener('click', () => {
         let email = document.getElementById('forgotEmail').value;
         let otp = Math.floor(Math.random() * (999999 - 100000 + 1));
-        Email.send({
-            Host: "smtp.gmail.com",
-            Username: "helpinghands032021@gmail.com",
-            Password: "mcflonomcfloonyloo",
-            To: email + "",
-            From: "helpinghands032021@gmail.com",
-            Subject: "Account Recovery OTP",
-            Body: "OTP: " + otp
-        }).then(
-            () => {
-                $.ajax({
-                    url: '../php/account_reply.php',
-                    method: 'POST',
-                    data: {
-                        email: email,
-                        OTP: otp
-                    },
-                    success: function() {
-                        window.location.assign('../php/account_recovery.php');
-                    }
-                });
-            }
-        );
+        sendOTP(email, "Account Recovery", otp, 0, ajaxAccountVerificationRequest);
+        //setTimeout(ajaxAccountVerificationRequest(email, otp), 1000);
     });
+
+    let userEmailVerificationRequest = () => {
+        let userEmail = document.getElementById('userVerificationEmail').innerText;
+        console.log(userEmail);
+        let otp = Math.floor(Math.random() * (999999 - 100000 + 1));
+        sendOTP(userEmail, "Account Verification", otp, 1, ajaxAccountVerificationRequest);
+        // setTimeout(ajaxAccountVerificationRequest(userEmail, otp, 1), 1000);
+    }
     </script>
 </body>
 
