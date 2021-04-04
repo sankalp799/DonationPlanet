@@ -74,13 +74,14 @@
     let emails = document.querySelectorAll('#emails div');
     let donation = document.getElementById('donation');
     console.log(donation.innerHTML);
+    console.log(emails);
 
     var mail = (to, subject, body) => {
         Email.send({
             Host: "smtp.gmail.com",
             Username: "helpinghands032021@gmail.com",
             Password: "mcflonomcfloonyloo",
-            To: to.innerHTML,
+            To: to,
             From: "helpinghands032021@gmail.com",
             Subject: subject,
             Body: "New Donation Registered Few Minutes Ago <br />Please check out<br />" + body.innerHTML
@@ -90,13 +91,16 @@
             }
         );
     }
+
     emails.forEach((current) => {
-        mail(current, "Donation", donation);
+        userEmail = current.innerHTML;
+        mail(userEmail, "Donation", donation);
     });
+
 
     setTimeout(() => {
         window.location.assign('../index.php')
-    }, 15000)
+    }, 15000);
     </script>
 </body>
 

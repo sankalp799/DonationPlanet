@@ -1,4 +1,9 @@
 <?php
+    $currentFileName = explode('/', $_SERVER['PHP_SELF']);
+    $currentFileName = explode('.', end($currentFileName));
+    $currentFileName = $currentFileName[0];
+?>
+<?php
 
 use PHPMailer\PHPMailer\Exception;
 
@@ -36,9 +41,10 @@ if (isset($_POST['getInTouchSubmission'])) {
     <link rel="stylesheet" text="text/css" href="css/Grid.css" />
     <link rel="stylesheet" text="text/css" href="css/style.css" />
     <link rel="stylesheet" text="text/css" href="css/ionicons.min.css" />
+    <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
     <script src="https://smtpjs.com/v3/smtp.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet" />
-    <title>Helping Hands</title>
+    <title><?php echo $currentFileName ?></title>
 </head>
 
 <body>
@@ -66,6 +72,25 @@ if (isset($_POST['getInTouchSubmission'])) {
                     <br /> Those Who are Happiest are Those <br />Who do Most for Other. <br />
                     <br />No One Has Ever<br />Become a Poor By Donating.
                 </p>
+            </div>
+        </div>
+
+        <div class='row'>
+            <div>
+                <i class="fas fa-sitemap"></i>
+                <div class="text-container"></div>
+            </div>
+            <div>
+                <i class="fas fa-users"></i>
+                <div class="text-container"></div>
+            </div>
+            <div>
+                <i class="fas fa-hands"></i>
+                <div class="text-container"></div>
+            </div>
+            <div>
+                <i class="fas fa-sitemap"></i>
+                <div class="text-container"></div>
             </div>
         </div>
 

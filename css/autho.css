@@ -3,6 +3,8 @@
     --dark-theme-color: #1d5a81;
     --default-text-color: #111111;
     --light-theme-color: #4bacec;
+    --donator-theme-color: #3f87a6;
+    --ngo-theme-color: #f69d3c;
 }
 
 
@@ -349,8 +351,6 @@ align-items: baseline;
 }
 
 .input-group .custom-select select {
-    -webkit-appearance: none;
-    appearance: none;
     border: none;
     border-bottom: 1px solid;
     border-color: var(--default-text-color);
@@ -359,6 +359,11 @@ align-items: baseline;
     padding: 8px 10px 8px 10px;
     background-color: transparent;
     outline: none;
+    -webkit-appearance: none;
+    background-image: url("https://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png");
+    background-repeat: no-repeat;
+    background-position: right center;
+    cursor: pointer;
 }
 
 .input-group input:focus,
@@ -366,7 +371,6 @@ align-items: baseline;
 .custom-select:focus {
     border-bottom: 2px solid;
     border-color: var(--theme-color);
-    animation: bottom-width 0.7s ease;
 }
 
 @keyframes bottom-width {
@@ -509,7 +513,8 @@ registration-selector-section
 }
 
 .registration-left-section:hover {
-    background: #227093;
+    transition: 1s ease-out;
+    background: #3f87a688;
 }
 
 .registration-right-section {
@@ -517,18 +522,14 @@ registration-selector-section
 }
 
 .registration-right-section:hover {
-    background: #227093;
+    transition: 1s ease-out;
+    background: #f69d3ca8;
 }
-
-
-/*
 
 .registration-left-section,
 .registration-right-section {
     background-color: transparent;
 }
-
-*/
 
 
 /**************

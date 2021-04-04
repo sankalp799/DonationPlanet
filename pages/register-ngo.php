@@ -1,6 +1,8 @@
 <?php
     include "../php/connection.php";
     include "../php/helpinghand.php";
+
+    $states = $sqlConnection->query("SELECT *FROM states;");
 ?>
 
 <?php
@@ -81,7 +83,11 @@
       }
   }
 ?>
-
+<?php
+    $currentFileName = explode('/', $_SERVER['PHP_SELF']);
+    $currentFileName = explode('.', end($currentFileName));
+    $currentFileName = $currentFileName[0];
+?>
 <!DOCTYPE html>
 <html>
 
@@ -93,8 +99,9 @@
     <link rel="stylesheet" text="text/css" href="../css/rest.css" />
     <link rel="stylesheet" text="text/css" href="../css/autho.css" />
     <link rel="stylesheet" text="text/css" href="../css/ionicons.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet" />
-    <title>Document</title>
+    <title><?php echo $currentFileName ?></title>
 </head>
 
 <body>
@@ -192,13 +199,25 @@
                 <label class="name">City</label>
                 <!--<ion-icon name="location"></ion-icon>-->
 
-                <input class="city" type="text" name="city" />
+                <div class="custom-select">
+                    <select name="city" id="donatorCity" required>
+
+                    </select>
+                </div>
                 <span class="bar"></span>
             </div>
             <div class="input-group">
                 <label class="name">State</label>
 
-                <input class="state" type="text" name="state" />
+                <div class="custom-select">
+                    <select name="state" id="stateSelect" required>
+                        <?php
+                            while($state = $states->fetch_array()){
+                                echo '<option value='.$state[1].' stateCode='.$state[0].' onclick="getCityByStateID(this)">'.$state[1].'</option>';
+                            }
+                        ?>
+                    </select>
+                </div>
                 <span class="bar"></span>
             </div>
 
@@ -242,6 +261,25 @@ s          Female
         document.getElementById("forgotPopUpBox").classList.toggle("active");
         console.log("open");
     };
+
+    let ajaxCityRequest = (stateCode = 0) => {
+        $.ajax({
+            url: '../php/fetchCity.php',
+            method: 'POST',
+            data: {
+                stateCode: stateCode
+            },
+            success: function(data) {
+                $('#donatorCity').html(data);
+            }
+        });
+    }
+    ajaxCityRequest();
+
+    function getCityByStateID(Element) {
+        let stateCode = Element.getAttribute('stateCode');
+        ajaxCityRequest(stateCode);
+    }
     </script>
 </body>
 

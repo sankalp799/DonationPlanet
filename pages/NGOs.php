@@ -1,4 +1,9 @@
 <?php
+    $currentFileName = explode('/', $_SERVER['PHP_SELF']);
+    $currentFileName = explode('.', end($currentFileName));
+    $currentFileName = $currentFileName[0];
+?>
+<?php
     include '../php/connection.php';
 ?>
 
@@ -14,7 +19,7 @@
     <link rel="stylesheet" text="text/css" href="../css/ionicons.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet" />
-    <title>Document</title>
+    <title><?php echo $currentFileName ?></title>
 </head>
 
 <body>
