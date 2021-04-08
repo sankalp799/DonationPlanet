@@ -63,8 +63,8 @@ include '../php/connection.php';
                     <div class="accordion-item-content-answer">
                         We are acting as bridge between Donators and Recievers.It is just a platform and nothing much.
                         We are acting as bridge between Donators and Recievers.It is just a platform and nothing much.
-                        We are acting as bridge between Donators and Recievers.It is
-                        just a platform and nothing much. We are acting as bridge We are acting as bridge between
+                        We are acting as bridge between Donators and Recievers. Helping Hand
+                        is online donation platform. We are acting as bridge We are acting as bridge between
                         Donators and Recievers.It is just a platform and nothing much. We are acting as bridge between
                         Donators and Recievers.It is just a platform
                         and nothing much. We are acting as bridge between Donators and Recievers. We are acting as

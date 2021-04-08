@@ -1,14 +1,24 @@
 <?php
+
+    include "php/connection.php";
+    include "php/helpinghand.php";
+    
     $currentFileName = explode('/', $_SERVER['PHP_SELF']);
     $currentFileName = explode('.', end($currentFileName));
     $currentFileName = $currentFileName[0];
+
+    //fetch stats
+    $totalNGOs = (int)($sqlConnection->query("SELECT COUNT(id) AS id FROM ngocred WHERE verify=1;")->fetch_object()->id);
+    $totalDonators = (int)($sqlConnection->query("SELECT COUNT(id) AS id FROM donatorcred WHERE emailVerified=1;")->fetch_object()->id);
+    $totalDonations = 0;
+    $donationCategoryWise = $sqlConnection->query("SELECT *FROM categories WHERE total > 0;");
+    while($donation = $donationCategoryWise->fetch_array()){
+        $totalDonations = $totalDonations + (int)(end($donation));
+    }
 ?>
 <?php
 
 use PHPMailer\PHPMailer\Exception;
-
-include "php/connection.php";
-include "php/helpinghand.php";
 
 
 if (isset($_POST['getInTouchSubmission'])) {
@@ -75,28 +85,28 @@ if (isset($_POST['getInTouchSubmission'])) {
             </div>
         </div>
 
-        <div class='row'>
-            <div>
+        <div class='row stat-view'>
+            <div class='stat-view-div'>
                 <i class="fas fa-sitemap"></i>
-                <div class="text-container"></div>
+                <div class="text-container"><?php echo $totalNGOs?> NGOs</div>
             </div>
-            <div>
+            <div class='stat-view-div'>
                 <i class="fas fa-users"></i>
-                <div class="text-container"></div>
+                <div class="text-container"><?php echo $totalDonators ?> Donators</div>
             </div>
-            <div>
+            <div class='stat-view-div'>
                 <i class="fas fa-hands"></i>
-                <div class="text-container"></div>
+                <div class="text-container"><?php echo $totalDonations ?> Donations</div>
             </div>
-            <div>
-                <i class="fas fa-sitemap"></i>
-                <div class="text-container"></div>
+            <div class='stat-view-div'>
+                <i class="fas fa-users-cog"></i>
+                <div class="text-container">3 Team Members</div>
             </div>
         </div>
 
         <!-- ABOUT-PROPRIETORS -->
         <div class="row proprietor-content">
-            <h2 class="developer-heading">partners</h2>
+            <h2 class="developer-heading">Team</h2>
             <div class="row">
                 <div class="col span-1-of-3">
                     <img src="../css/img/partners/yash.jpeg" class="proprietor-image" /><br />

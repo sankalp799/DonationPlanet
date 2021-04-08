@@ -374,7 +374,7 @@ header {
     height: 3px;
     margin-top: 10px;
     margin-left: 10px;
-    width: 130px;
+    width: 10%;
     content: "";
     background-color: var(--theme-color);
     margin-bottom: 40px;
@@ -789,4 +789,46 @@ login site-logo svg css
     to {
         fill: #fff;
     }
+}
+
+
+/*******
+home-page-stat-view-style
+*****/
+
+.stat-view {
+    padding-top: 20px;
+    padding-bottom: 30px;
+    margin-bottom: 60px;
+    background-color: #444;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.stat-view-div {
+    position: relative;
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.stat-view-div div,
+.stat-view-div i {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.stat-view-div i {
+    color: var(--theme-color);
+    padding: 20px;
+    font-size: 190%;
+}
+
+.stat-view-div div {
+    color: #fff;
+    padding: 10px 20px;
 }

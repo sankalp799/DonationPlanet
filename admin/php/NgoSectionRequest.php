@@ -43,7 +43,7 @@
                                 <i class="fas fa-map-marked-alt ngo-address-icon" id="getLocation"></i>
                         </div>
                         <div class="donation-bar-img">
-                        <img src="'.end($row).'" class="span-1-of-2 donation-images" />
+                        <img src="'.$row[13].'" class="span-1-of-2 donation-images" />
                         </div>
                         <div class="donation-bar-btn-section" id="donationBarBtns">
                         <button class="donation-bar-btn" id="addDonation" verify="1" onclick="editNGO(this)">Approve</button>
