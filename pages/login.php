@@ -56,7 +56,6 @@ session_start();
                     $errorDisplay = true;
                     $userEmailAddress = (string)$ngoObj->email;
                     $error = "You are required to verify the Email Address<br /> <button onclick='userEmailVerificationRequest()'>verify</button><br /><p style='display: none;' id='userVerificationEmail'>".$userEmailAddress."</p>";
-                
                 }
             }else{
                 // incorrect password
@@ -261,7 +260,7 @@ session_start();
             data: {
                 email: userEmail,
                 OTP: otp,
-                accountVerification: accountVerification
+                accountVerificationCode: accountVerification
             },
             success: function() {
                 window.location.assign('../php/account_recovery.php');
@@ -288,7 +287,7 @@ session_start();
 
     let userEmailVerificationRequest = () => {
         let userEmail = document.getElementById('userVerificationEmail').innerText;
-        console.log(userEmail);
+        // console.log(userEmail);
         let otp = Math.floor(Math.random() * (999999 - 100000 + 1));
         sendOTP(userEmail, "Account Verification", otp, 1, ajaxAccountVerificationRequest);
         // setTimeout(ajaxAccountVerificationRequest(userEmail, otp, 1), 1000);

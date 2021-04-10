@@ -84,7 +84,7 @@ $accountVerification = (int)($_SESSION['accountVerification']);
 $userEmail = (string)$_SESSION['tempEmail'];
 
 if(isset($_POST['submit'])){
-    if((int)$_SESSION['tempOTP'] == (int)$_POST['one-time-password']){
+    if($_SESSION['tempOTP'] == $_POST['one-time-password']){
         if($accountVerification){
             if($sqlConnection->query("UPDATE donatorcred SET emailVerified=1 WHERE email='$userEmail';")){
                 $sqlConnection->query("UPDATE ngocred SET emailVerified=1 WHERE email='$userEmail';");
@@ -95,7 +95,7 @@ if(isset($_POST['submit'])){
         }
     }else{
         $errorDisplay=true;
-        $error="Incorrect OTP Please Try Again";
+        $error="Incorrect OTP Please Try Again".$_SESSION['tempOTP'];
     }
 }
 ?>
