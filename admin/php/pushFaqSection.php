@@ -2,10 +2,11 @@
     include '../../php/connection.php';
     $question = $_POST['question'];
     $ans = $_POST['answer'];
-    $pushFaqQuery = "INSERT INTO faq VALUES('$question', '$ans');";
+    $dateTime = date("Y-m-d h:i:s");
+    $pushFaqQuery = "INSERT INTO faq VALUES('$question', '$ans', '$dateTime');";
     if($sqlConnection->query($pushFaqQuery)){
         echo '
-        <div class="overlay-container"><i class="fas fa-fighter-jet"></i>
+        <div class="overlay-container"><img src="../css/img/flyingWitch.png" class="flyingWitchBroomIcon"/>
 
         </div>
 

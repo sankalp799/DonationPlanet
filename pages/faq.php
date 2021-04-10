@@ -39,7 +39,8 @@ include '../php/connection.php';
 
 
             <?php
-                if($result = $sqlConnection->query('SELECT *FROM faq;')){
+                if($result = $sqlConnection->query('SELECT *FROM faq ORDER BY uploadedOn DESC;')){
+                    
                     while($row = $result->fetch_array()){
                         echo '<div class="accordion-item">
                         <div class="accordion-item-question">'.$row[0].'</div>
@@ -52,6 +53,7 @@ include '../php/connection.php';
                         </div>
                     </div>';
                     }
+                    
                 }
             ?>
             <!--

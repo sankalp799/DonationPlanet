@@ -74,6 +74,8 @@
                     document.getElementById('flyContainer').innerHTML = data;
 
                     setTimeout(() => {
+                        document.getElementById('Query').value = "";
+                        document.getElementById('Response').value = "";
                         document.getElementById('flyContainer').innerHTML = "";
                     }, 6500);
 
