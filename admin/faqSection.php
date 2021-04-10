@@ -43,6 +43,21 @@
 
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
     <script>
+    let responsiveNavigator = () => {
+        let Navigator = document.getElementById('adminNavigator');
+        let links = document.querySelectorAll('#adminNavigator li a span');
+        let adminRestSection = document.getElementById('adminFaqSection');
+        // let adminDashBoardSection = document.getElementById('adminMainSection');
+        links.forEach(curr => {
+            curr.classList.toggle('active');
+        })
+        Navigator.classList.toggle('active');
+        adminRestSection.classList.toggle('active');
+        // adminDashBoardSection.classList.toggle('active');
+        console.log(true);
+    }
+    </script>
+    <script>
     document.getElementById('submitQueryBtn').addEventListener('click', () => {
         let pushQueryForm = document.getElementById('pushQueryForm').innerHTML;
         let question = document.getElementById('Query').value.trim();

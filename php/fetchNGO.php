@@ -16,6 +16,7 @@
                    $EmailName[$iterator] = '*';
                }
             $email = (string)($EmailName . '@' . $email[1]);
+            $contactNumber = $row[5]%1000;
             echo '<div class="row donation-bar">
             <div class="col span-1-of-2 donation-data">
                 <span class="donation-bar-title">Organization: </span><span
@@ -25,7 +26,7 @@
                 <span class="donation-bar-title">E-mail address: </span><span
                     class="donation-bar-details">'.$email.'</span><br />
                 <span class="donation-bar-title">contact: </span><span
-                    class="donation-bar-details">'.$row[5].'</span><br />
+                    class="donation-bar-details">'.'*******'.$contactNumber.'</span><br />
                 <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$row[6].", ".$row[7].", ".$row[8].", - ".$row[9].'</span>
                 <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation" onclick="ngoGeoLocation(this)"></i>
             </div>

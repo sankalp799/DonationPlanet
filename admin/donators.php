@@ -27,7 +27,7 @@
             <?php include "php/adminNavigator.php" ?>
         </div>
 
-        <div class="admin-rest-section">
+        <div class="admin-rest-section" id="adminDonationViewPanel">
             <div class="donator-container">
                 <?php
                     if($donators = $sqlConnection->query("SELECT *FROM donatorcred;")){
@@ -73,6 +73,21 @@
     </section>
 
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
+    <script>
+    let responsiveNavigator = () => {
+        let Navigator = document.getElementById('adminNavigator');
+        let links = document.querySelectorAll('#adminNavigator li a span');
+        let adminRestSection = document.getElementById('adminDonationViewPanel');
+        // let adminDashBoardSection = document.getElementById('adminMainSection');
+        links.forEach(curr => {
+            curr.classList.toggle('active');
+        })
+        Navigator.classList.toggle('active');
+        adminRestSection.classList.toggle('active');
+        // adminDashBoardSection.classList.toggle('active');
+        console.log(true);
+    }
+    </script>
 </body>
 
 </html>
