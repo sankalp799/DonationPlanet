@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 04, 2021 at 03:32 PM
+-- Generation Time: Apr 10, 2021 at 03:07 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.3.21
 
@@ -41,7 +41,8 @@ CREATE TABLE IF NOT EXISTS `admin` (
 
 INSERT INTO `admin` (`id`, `name`, `pass`) VALUES
 ('admin@helpinghand.com', 'Yashasavi Mishra', '$2y$10$roziPxsa8xc8XcKRkvxb5.kRJehBoLa0LBidc2xB/FciqzWKUK8/K'),
-('admin2@helpinghand.com', 'Sankalp Prihtyani', '$2y$10$I4shNZR.P.PQsaMG6M6x8eyYAZTo7U4xbsfWg8oYUtpfxtofNGXn2');
+('admin2@helpinghand.com', 'Sankalp Prihtyani', '$2y$10$I4shNZR.P.PQsaMG6M6x8eyYAZTo7U4xbsfWg8oYUtpfxtofNGXn2'),
+('admin1@helpinghand.com', 'Saurabh Mishra', '$2y$10$AgDgumAdanZhCmMXzfv0lO64BkhV0QrSaXeD3PjECxyhwvi6BdW.y');
 
 -- --------------------------------------------------------
 
@@ -843,6 +844,14 @@ CREATE TABLE IF NOT EXISTS `faq` (
   `response` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `faq`
+--
+
+INSERT INTO `faq` (`question`, `response`) VALUES
+('What is Helping Hand ?', 'Helping Hand is a donation platform operate as intermediate to bridge the connection between donator and Non-Profite Organizations and Small Social Working Groups for a purpose of donation of goods for people below poverty. The people could not even afford or complete there daily needs.'),
+('What is Helping Hand ?', 'Helping Hand is a donation platform operate as intermediate to bridge the connection between donator and Non-Profite Organizations and Small Social Working Groups for a purpose of donation of goods for people below poverty. The people could not even afford or complete there daily needs.');
+
 -- --------------------------------------------------------
 
 --
@@ -880,7 +889,7 @@ INSERT INTO `ngocred` (`id`, `orgName`, `startUpDate`, `email`, `pass`, `contact
 ('SWG-9425151183', 'Yash', '2001-03-02', 'nagar@gmail.com', '$2y$10$q/8LiM/ZidQ1mHKItV7w4.L.SvMArtRU1AACzdpeGqOz.lLFD8meW', 9425151183, '785', 'JBP', 'MP', 482001, '0000-00-00', b'0', 'nagar.jpeg', '../uploads/ngo_doc/nagar.jpeg', b'0'),
 ('SWG-9484812448', 'DreamComeTrue', '2000-10-20', 'yashi33256@gmail.com', '$2y$10$Mz3VOowhjPhk5agnpjJ..uXexLr10WvEEGSFy0cZvTUOxL2GZCHIy', 9484812448, 'SSV School', 'Vadodara', 'Gujarat', 482001, '0000-00-00', b'0', 'yashi33256.jpeg', '../uploads/ngo_doc/yashi33256.jpeg', b'0'),
 ('SWG-7996769907', 'JayMangal', '2000-02-20', 'mishrasaurabha1@gmail.com', '$2y$10$a6m2yVGsby.mD4AzZ0L/KeZmfJ2al8u0Uq5pYgNF.kYLTmkIDuMQ.', 7996769907, '40, Jay Mangal', 'Vadodara', 'Gujarat', 482006, '0000-00-00', b'1', 'mishrasaurabha1.jpeg', '../uploads/ngo_doc/mishrasaurabha1.jpeg', b'0'),
-('SWG-7999967680', 'Benifactors', '2000-03-23', 'leagueshadow01@gmail.com', '$2y$10$N5wjPoN3ELnal9A5/WBbC.dTVSVttZO.uV2pKXv42rTR.FiGWTRZG', 7999967680, 'uma char rasta', 'vadodara', 'gujarat', 482001, '0000-00-00', b'1', 'leagueshadow01.png', '../uploads/ngo_doc/leagueshadow01.png', b'0'),
+('SWG-7999967680', 'Benifactors', '2000-03-23', 'leagueshadow01@gmail.com', '$2y$10$qjVdjrhpfnGiOOWsrK.aguTzsdwcv53Oq9uxrxLVGehVKTSLtqcMO', 7999967680, 'uma char rasta', 'vadodara', 'gujarat', 482001, '0000-00-00', b'1', 'leagueshadow01.png', '../uploads/ngo_doc/leagueshadow01.png', b'1'),
 ('SWG-8979878887', 'Name', '1995-11-05', 'san@gmail.com', '$2y$10$Y8dmvVSmyvNXZ8PIWsYE2ux0Gxivr9qXy//ggchBQmv0wvR0Nwc46', 8979878887, 'asdfadsfafdsadsf', 'adsfasfdasdfaf', 'adsfafasdfdafdsaf', 482001, '0000-00-00', b'0', 'san.png', '../uploads/ngo_doc/san.png', b'0'),
 ('SWG-6776770909', 'PetCare', '1998-09-20', 'info.computer@gmail.com', '$2y$10$3MG.QfdovtVPgw.VSLjdx.KpYojI0DLRM6OscIYlWWt.iHXw9Pr0O', 6776770909, 'queen mary school', 'Bhopal', 'Madhya Pradesh', 453002, '0000-00-00', b'1', 'info.computer.jpg', '../uploads/ngo_doc/info.computer.jpg', b'0'),
 ('SWG-8989812448', 'Bhopal Pet Zone', '1998-01-26', 'info.computermind1905@gmail.com', '$2y$10$q5WMY8Oy/kKzwqswl3LPu.y4Kum8cdvDJ5/A5LM3oquLsqKKu3Cd2', 8989812448, 'queen marry school', 'Bhopal', 'Madhya Pradesh', 453002, '0000-00-00', b'1', 'pd9581.png', '../uploads/ngo_doc/pd9581.png', b'1');
