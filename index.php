@@ -11,6 +11,7 @@
     $totalNGOs = (int)($sqlConnection->query("SELECT COUNT(id) AS id FROM ngocred WHERE verify=1;")->fetch_object()->id);
     $totalDonators = (int)($sqlConnection->query("SELECT COUNT(id) AS id FROM donatorcred WHERE emailVerified=1;")->fetch_object()->id);
     $totalDonations = 0;
+    $totalTeamMembers = (int)($sqlConnection->query("SELECT COUNT(id) AS idCount FROM admin;")->fetch_object()->idCount);
     $donationCategoryWise = $sqlConnection->query("SELECT *FROM categories WHERE total > 0;");
     while($donation = $donationCategoryWise->fetch_array()){
         $totalDonations = $totalDonations + (int)(end($donation));
@@ -100,16 +101,17 @@ if (isset($_POST['getInTouchSubmission'])) {
             </div>
             <div class='stat-view-div'>
                 <i class="fas fa-users-cog"></i>
-                <div class="text-container">3 Team Members</div>
+                <div class="text-container"><?php echo $totalTeamMembers ?> Team Members</div>
             </div>
         </div>
 
         <!-- ABOUT-PROPRIETORS -->
         <div class="row proprietor-content">
             <h2 class="developer-heading">Team</h2>
-            <div class="row">
+            <div class="row team-view-section">
                 <div class="col span-1-of-3">
-                    <img src="../css/img/partners/yash.jpeg" class="proprietor-image" /><br />
+                    <i class="fas fa-id-card-alt"></i><br />
+                    <!--<img src="../css/img/partners/yash.jpeg" class="proprietor-image" /><br />-->
                     <h4>Yashasavi Mishra</h4>
                     <br />
                     <p class="col span-1-of-3 developer-para" align="center" style="width: 330px">
@@ -120,7 +122,8 @@ if (isset($_POST['getInTouchSubmission'])) {
                 </div>
 
                 <div class="col span-1-of-3">
-                    <img src="../css/img/partners/saurabh.jpg" class="proprietor-image" /><br />
+                    <i class="fas fa-id-card-alt"></i><br />
+                    <!--<img src="../css/img/partners/saurabh.jpg" class="proprietor-image" /><br />-->
                     <h4>Saurabh Mishra</h4>
                     <br />
                     <p class="col span-1-of-3 developer-para" align="center" style="width: 330px">
@@ -131,7 +134,8 @@ if (isset($_POST['getInTouchSubmission'])) {
                 </div>
 
                 <div class="col span-1-of-3">
-                    <img src="../css/img/partners/sankalp.jpg" class="proprietor-image" /><br />
+                    <i class="fas fa-id-card-alt"></i><br />
+                    <!--<img src="../css/img/partners/sankalp.jpg" class="proprietor-image" /><br />-->
                     <h4>Sankalp Prithyani</h4>
                     <br />
                     <p class="col span-1-of-3 developer-para" align="center" style="width: 330px">

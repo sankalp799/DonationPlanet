@@ -133,7 +133,7 @@ svg {
 *******************/
 
 header {
-    background: radial-gradient(rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.31)), url("../css/img/the-helping-hand-header.png");
+    background: radial-gradient(rgba(0, 0, 0, 0.15), rgba(0, 0, 0, 0.15)), url("../css/img/the-helping-hand-header.png");
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -160,7 +160,6 @@ header {
     top: 0%;
     padding: 20px 40px;
     margin-left: 0;
-    animation: half-pulse 1.2s ease infinite;
     border: 1px solid #fff;
     transform: translate(-40%);
     transition: 450ms ease-in-out 300ms;
@@ -364,17 +363,19 @@ header {
 }
 
 .developer-heading {
-    margin-bottom: 30px;
-    margin-top: 30px;
-    margin-left: 45%;
+    border: 1px solid;
+    width: fit-content;
+    position: relative;
+    left: 50%;
 }
 
 .developer-heading:after {
     display: block;
+    position: relative;
     height: 3px;
     margin-top: 10px;
-    margin-left: 10px;
-    width: 10%;
+    width: 80%;
+    left: 10%;
     content: "";
     background-color: var(--theme-color);
     margin-bottom: 40px;
@@ -831,4 +832,26 @@ home-page-stat-view-style
 .stat-view-div div {
     color: #fff;
     padding: 10px 20px;
+}
+
+
+/********************
+index-team-style
+*******/
+
+.team-view-section i {
+    position: relative;
+    font-size: 300%;
+    left: 50%;
+    margin-bottom: 10px;
+    color: var(--light-theme-color);
+}
+
+.team-view-section h4 {
+    width: 100%;
+}
+
+.team-view-section p {
+    position: relative;
+    left: 10%;
 }
