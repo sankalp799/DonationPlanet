@@ -6,7 +6,7 @@
     $pushFaqQuery = "INSERT INTO faq VALUES('$question', '$ans', '$dateTime');";
     if($sqlConnection->query($pushFaqQuery)){
         echo '
-        <div class="overlay-container"><img src="../css/img/flyingWitch.png" class="flyingWitchBroomIcon"/>
+        <div class="overlay-container"><img src="../css/img/ufo.png" class="flyingWitchBroomIcon"/>
 
         </div>
 

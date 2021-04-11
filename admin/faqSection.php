@@ -59,6 +59,7 @@
     </script>
     <script>
     document.getElementById('submitQueryBtn').addEventListener('click', () => {
+        document.getElementById('submitQueryBtn').disabled = true;
         let pushQueryForm = document.getElementById('pushQueryForm').innerHTML;
         let question = document.getElementById('Query').value.trim();
         let answer = document.getElementById('Response').value.trim();
@@ -77,6 +78,7 @@
                         document.getElementById('Query').value = "";
                         document.getElementById('Response').value = "";
                         document.getElementById('flyContainer').innerHTML = "";
+                        document.getElementById('submitQueryBtn').disabled = false;
                     }, 6500);
 
                 }
