@@ -30,7 +30,7 @@
             $numberOfDonations = (int)$donationsObj->donations;
 
             // donation image types allowed
-            $types_allowed = array('jpeg', 'png', 'jpg');
+            $types_allowed = array('jpeg', 'png', 'jpg', 'gif', 'webp', 'heif', 'heic');
 
             // donation directory 
             $numberOfDonations = $numberOfDonations + 1;

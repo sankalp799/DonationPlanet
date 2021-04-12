@@ -203,7 +203,6 @@ header {
 }
 
 .donate-btn:hover {
-    animation: half-pulse 1.2s ease 1;
     color: var(--theme-color);
     transition: 450ms ease-in-out 300ms;
 }
@@ -363,21 +362,23 @@ header {
 }
 
 .developer-heading {
-    width: fit-content;
     position: relative;
     left: 50%;
+    margin-bottom: 45px;
+    width: -moz-fit-content;
+    font-weight: normal;
+    letter-spacing: 2px;
 }
 
 .developer-heading:after {
+    content: "  ";
     display: block;
     position: relative;
-    height: 3px;
-    margin-top: 10px;
     width: 80%;
-    left: 10%;
-    content: "";
+    height: 4px;
     background-color: var(--theme-color);
-    margin-bottom: 40px;
+    left: 10%;
+    margin-top: 8px;
 }
 
 .developer-para {

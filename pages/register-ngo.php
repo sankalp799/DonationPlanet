@@ -10,7 +10,11 @@
     $errorDisplay = false;
 
   if (isset($_POST['NGOsubmit'])) {
-  $newNGO = new ngo($_POST['orgName'], $_POST['StartUpDate'], $_POST['password'], $_POST['email'], $_POST['contact'], $_POST['city'], $_POST['state'], $_POST['address'], $_POST['pincode']);
+    $userCity = $_POST['city'];
+    $userCity = str_replace("_", " ", $userCity);
+    $stateCode = $_POST['state'];
+    $state = $sqlConnection->query("SELECT stateName FROM states WHERE stateID='$stateCode';")->fetch_object()->stateName;
+    $newNGO = new ngo($_POST['orgName'], $_POST['StartUpDate'], $_POST['password'], $_POST['email'], $_POST['contact'], $userCity, $state, $_POST['address'], $_POST['pincode']);
       $id = $newNGO->getID();
       $password = $newNGO->getPassword();
 
@@ -213,7 +217,7 @@
                     <select name="state" id="stateSelect" required>
                         <?php
                             while($state = $states->fetch_array()){
-                                echo '<option value='.$state[1].' stateCode='.$state[0].' onclick="getCityByStateID(this)">'.$state[1].'</option>';
+                                echo '<option value='.$state[0].' onclick="getCityByStateID(this)">'.$state[1].'</option>';
                             }
                         ?>
                     </select>
@@ -262,7 +266,7 @@ s          Female
         console.log("open");
     };
 
-    let ajaxCityRequest = (stateCode = 0) => {
+    let ajaxCityRequest = (stateCode) => {
         $.ajax({
             url: '../php/fetchCity.php',
             method: 'POST',
@@ -276,11 +280,18 @@ s          Female
     }
     ajaxCityRequest();
 
-    function getCityByStateID(Element) {
-        let stateCode = Element.getAttribute('stateCode');
+    let getCityByStateID = (Element) => {
+        let stateCode = Element.value;
+        console.log(Element);
         ajaxCityRequest(stateCode);
+    }
+
+    let printCity = (element) => {
+        console.log(element);
     }
     </script>
 </body>
+
+
 
 </html>

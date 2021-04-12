@@ -40,7 +40,7 @@
         <div class="hidden-state" id="state" style="display: none;"><?php echo $state?></div>
         <div class="hidden-email" id="emails" style="display: none;">
             <?php
-            $emailList = $sqlConnection->query("SELECT email FROM ngocred WHERE state='$state';");
+            $emailList = $sqlConnection->query("SELECT email FROM ngocred WHERE state='$state' AND verify=1;");
             if($emailList){
                 while($row = $emailList->fetch_array()){
                     echo '<div>'.$row[0].'</div>';

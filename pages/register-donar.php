@@ -10,7 +10,11 @@ $states = $sqlConnection->query("SELECT *FROM states;");
     $errorDisplay = false;
 
    if(isset($_POST['donatorSubmit'])){
-      $newDonator = new donator($_POST['username'], $_POST['DOB'], $_POST['gender'], $_POST['password'], $_POST['email'], $_POST['contact'], $_POST['address'], $_POST['city'], $_POST['state'], $_POST['pincode']);
+    $userCity = $_POST['city'];
+    $userCity = str_replace("_", " ", $userCity);
+      $stateCode = $_POST['state'];
+      $state = $sqlConnection->query("SELECT stateName FROM states WHERE stateID='$stateCode';")->fetch_object()->stateName;  
+      $newDonator = new donator($_POST['username'], $_POST['DOB'], $_POST['gender'], $_POST['password'], $_POST['email'], $_POST['contact'], $_POST['address'], $userCity, $state, $_POST['pincode']);
       $password = $newDonator->getPassword();
       $id = $newDonator->getID();
       $donatorRegistrationQuery = "INSERT INTO donatorcred VALUES('$id', '$newDonator->name', '$password', '$newDonator->DOB', '$newDonator->email', $newDonator->contact, '$newDonator->address', '$newDonator->city', '$newDonator->state', $newDonator->pinCode, '$newDonator->directory',0,0);";
@@ -165,7 +169,7 @@ $states = $sqlConnection->query("SELECT *FROM states;");
                     <select name="state" id="stateSelect" required>
                         <?php
                             while($state = $states->fetch_array()){
-                                echo '<option value='.$state[1].' stateCode='.$state[0].' onclick="getCityByStateID(this)">'.$state[1].'</option>';
+                                echo '<option value='.$state[0].' onclick="getCityByStateID(this)">'.$state[1].'</option>';
                             }
                         ?>
                     </select>
@@ -228,7 +232,7 @@ s          Female
     ajaxCityRequest();
 
     function getCityByStateID(Element) {
-        let stateCode = Element.getAttribute('stateCode');
+        let stateCode = Element.value;
         ajaxCityRequest(stateCode);
     }
     </script>

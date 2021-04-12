@@ -47,7 +47,7 @@
                 <button class="category-btn cloth-category-btn">Clothes</button>
                 -->
                 <?php
-            
+                    echo '<button class="category-btn" id="donationFilterBtn"><i class="fas fa-globe category-icon"></i>ALL</button><br />';
                     include "../php/connection.php";
                     $result = $sqlConnection->query("SELECT *FROM categories;");
                     while($categories = $result->fetch_array()){
