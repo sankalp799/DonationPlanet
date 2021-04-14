@@ -24,9 +24,12 @@
                 while($row = $result->fetch_array()){
                     $donator = $sqlConnection->query("SELECT *FROM donatorcred WHERE id = '$row[1]';");
                     $donator = $donator->fetch_array();
-                    
+
                     if($donationImageDataArray = $sqlConnection->query("SELECT *FROM donationimg WHERE id = '$row[0]';")){
                         $donationImageData = $donationImageDataArray->fetch_array();
+
+                        $donatorContact = $donator[5]%1000;
+
                      echo  '<div class="row donation-bar">
                         <div class="col span-1-of-2 donation-data">
                             <span class="donation-bar-title">Name: </span><span
@@ -42,8 +45,8 @@
                             <span class="donation-bar-title">Date: </span><span
                                 class="donation-bar-details">'.$row[6].'</span><br />
                             <span class="donation-bar-title">contact: </span><span
-                                class="donation-bar-details">'.$donator[5].'</span><br />
-                            <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$donator[6].','.$donator[7].','.$donator[8].' - '.$donator[9].'</span>
+                                class="donation-bar-details">'.'*******'.$donatorContact.'</span><br />
+                            <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$donator[6].','.strtoupper($donator[7]).','.strtoupper($donator[8]).' - '.$donator[9].'</span>
                             <ion-icon name="map" class="donation-address-icon"></ion-icon><br />
                         </div>
                         <img src="'.$donationImageData[2].'" class="span-1-of-2 donation-images" />

@@ -27,7 +27,7 @@
                     class="donation-bar-details">'.$email.'</span><br />
                 <span class="donation-bar-title">contact: </span><span
                     class="donation-bar-details">'.'*******'.$contactNumber.'</span><br />
-                <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$row[6].", ".$row[7].", ".$row[8].", - ".$row[9].'</span>
+                <span class="donation-bar-title">Location: </span><span class="donation-bar-details">'.$row[6].", ".strtoupper($row[7]).", ".strtoupper($row[8]).", - ".$row[9].'</span>
                 <i class="fas fa-map-marked-alt donation-address-icon" id="getLocation" onclick="ngoGeoLocation(this)"></i>
             </div>
             <img src="'.$row[13].'" class="span-1-of-2 donation-images"/>
