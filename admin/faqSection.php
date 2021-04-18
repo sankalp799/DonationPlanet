@@ -73,14 +73,14 @@
                 },
                 success: function(data) {
                     document.getElementById('flyContainer').innerHTML = data;
-
+                    
                     setTimeout(() => {
                         document.getElementById('Query').value = "";
                         document.getElementById('Response').value = "";
                         document.getElementById('flyContainer').innerHTML = "";
                         document.getElementById('submitQueryBtn').disabled = false;
                     }, 6500);
-
+                    
                 }
             });
         }

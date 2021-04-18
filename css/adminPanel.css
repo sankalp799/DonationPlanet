@@ -447,17 +447,19 @@ faq-admin-section
 }
 
 .fly-text {
+    border: 1px solid;
     position: relative;
     height: 5vh;
-    left: 0%;
     top: 0%;
     z-index: 10;
-    width: fit-content;
     left: 50%;
     transform: translateX(-50%);
     font-size: 120%;
     color: var(--theme-color);
     padding-top: 10px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: -1px;
 }
 
 .fly-container i {
