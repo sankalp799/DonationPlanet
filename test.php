@@ -1,6 +1,10 @@
 <?php
 include 'php/connection.php';
-$str = "Dadra and Nagar Haveli";
-$str = str_replace(" ", "-", $str);
-echo $str;
+session_start();
+if(isset($_SESSION['type'])){
+    echo 'set';
+    echo $_SESSION['type'];
+}else{
+    echo 'unset';
+}
 ?>

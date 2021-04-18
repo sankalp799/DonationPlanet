@@ -96,6 +96,7 @@
 <html>
 
 <head>
+    <link rel="stylesheet" text="text/css" href="../css/ngoTheme.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" text="text/css" href="../css/normalize.css" />
@@ -140,7 +141,7 @@
         </div>
     </div>
 
-    <section class="row donar-registration-section">
+    <section class="row ngo-registration-section">
         <form class="donar-registration-form" action="./register-ngo.php" method="POST" enctype="multipart/form-data">
             <div class="registration-label">Create Account</div>
             <div class="input-group">
@@ -247,7 +248,8 @@
           <span class="checkmark"></span>
 s          Female
         </label>-->
-            <button type="submit" name="submit" class="clear-btn">Clear</button>
+            <button type="submit" name="submit" class="clear-btn"
+                onclick="location.assign('../pages/login.php');">Cancel</button>
             <button type="submit" name="NGOsubmit" class="register-btn">
                 Register
             </button>

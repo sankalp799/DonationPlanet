@@ -46,6 +46,19 @@ if (isset($_POST['getInTouchSubmission'])) {
 <html lang="en">
 
 <head>
+    <?php
+    session_start();
+        if(isset($_SESSION['type'])){
+            if((string)$_SESSION['type'] == 'donator'){
+                echo '<link rel="stylesheet" text="text/css" href="css/donatorTheme.css" />';
+            }else if((string)$_SESSION['type'] == 'ngo'){
+                echo '<link rel="stylesheet" text="text/css" href="css/ngoTheme.css" />';
+            }
+        }else{
+            echo '<link rel="stylesheet" text="text/css" href="css/donatorTheme.css" />';
+        }
+            
+    ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" text="text/css" href="css/normalize.css" />

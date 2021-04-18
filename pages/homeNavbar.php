@@ -7,7 +7,7 @@
     </ul>
 
     <?php
-        session_start();
+        
         if(!isset($_SESSION['type'])){
             echo '<ul class="user-list">
             <li><a href="../pages/registration.php" class="btn signup-btn">Sign Up</a></li>

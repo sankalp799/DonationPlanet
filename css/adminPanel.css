@@ -1,10 +1,9 @@
 :root {
-    --theme-color: #2c8ac7;
-    --dark-theme-color: #1d5a81;
+    --theme-color: #f69c3c;
+    --dark-theme-color: #f69c3c;
     --default-text-color: #111111;
-    --light-theme-color: #4bacec;
-    --donator-theme-color: #3f87a6;
-    --ngo-theme-color: #f69d3c;
+    --light-theme-color: #f69c3c80;
+    --light-light-theme-color: #f69c3c60;
 }
 
 
@@ -90,7 +89,7 @@ admin-panel-style
 
 .admin-navigator {
     transition: 1s ease-out;
-    background: #2980b9;
+    background: var(--theme-color);
     color: #fff;
     position: absolute;
     width: 20%;

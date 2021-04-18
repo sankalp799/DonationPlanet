@@ -88,6 +88,17 @@ session_start();
 <html>
 
 <head>
+    <?php
+        if(isset($_SESSION['type'])){
+            if($_SESSION['type'] == 'donator')
+                echo '<link rel="stylesheet" text="text/css" href="../css/donatorTheme.css" />';
+            else
+                echo '<link rel="stylesheet" text="text/css" href="../css/ngoTheme.css" />';
+        }else{
+            echo '<link rel="stylesheet" text="text/css" href="../css/donatorTheme.css" />';
+        }
+            
+    ?>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" text="text/css" href="../css/normalize.css" />

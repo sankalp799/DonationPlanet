@@ -55,12 +55,14 @@ $states = $sqlConnection->query("SELECT *FROM states;");
 <html>
 
 <head>
+    <link rel="stylesheet" text="text/css" href="../css/donatorTheme.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" text="text/css" href="../css/normalize.css" />
     <link rel="stylesheet" text="text/css" href="../css/Grid.css" />
     <link rel="stylesheet" text="text/css" href="../css/rest.css" />
     <link rel="stylesheet" text="text/css" href="../css/autho.css" />
+
     <link rel="stylesheet" text="text/css" href="../css/ionicons.min.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;1,300&display=swap" rel="stylesheet" />
@@ -195,7 +197,8 @@ $states = $sqlConnection->query("SELECT *FROM states;");
           <span class="checkmark"></span>
 s          Female
         </label>-->
-            <button type="submit" name="clear" class="clear-btn">Clear</button>
+            <button type="submit" name="clear" class="clear-btn"
+                onclick="location.assign('../pages/login.php');">Cancel</button>
             <button type="submit" name="donatorSubmit" class="register-btn">
                 Register
             </button>
