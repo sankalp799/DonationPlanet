@@ -808,8 +808,20 @@ DONATION FORM STYLE
     position: relative;
     margin-bottom: 4%;
     color: #fff;
+    font-size: 90%;
     padding: 10px 10px;
+    overflow-x: hidden;
     background-color: #111111;
+    animation: viewImageBar 1.5s ease-out forwards;
+}
+
+@keyframes viewImageBar {
+    0% {
+        width: 0%;
+    }
+    100% {
+        width: 100%;
+    }
 }
 
 .donation-image-size {
