@@ -574,6 +574,7 @@ reset-password-style
     padding: 20px 40px;
     font-size: 250%;
     letter-spacing: 1px;
+    color: #eee;
 }
 
 .new-password-from-div {
@@ -645,7 +646,8 @@ reset-password-style
     background-color: transparent;
     border: 1px solid;
     outline: none;
-    border-radius: 5px text-transform: uppercase;
+    border-radius: 5px;
+    text-transform: uppercase;
     letter-spacing: 1px;
     text-transform: uppercase;
 }
@@ -653,6 +655,7 @@ reset-password-style
 .new-password-btn:hover {
     background-color: black;
     color: var(--light-theme-color);
+    color: #fff;
     transition: 400ms ease;
 }
 
@@ -678,30 +681,30 @@ DONATION-MSG-STYLE
     width: 100%;
     height: 900px;
     background-size: 400% 400%;
-    background: linear-gradient(315deg, var(--theme-color) 100%, rgba(56, 162, 228, 0.925) 0%);
+    background: linear-gradient(315deg, rgba(174, 220, 248, 0.925) 100%, rgba(56, 162, 228, 0.925) 0%);
     animation: linearChange 5s cubic-bezier(0, 0, 0.2, 1) infinite 1s;
 }
 
 @keyframes linearChange {
     0% {
-        background: linear-gradient(315deg, var(--theme-color) 100%, rgba(56, 162, 228, 0.925) 0%);
+        background: linear-gradient(315deg, rgba(174, 220, 248, 0.925) 100%, rgba(56, 162, 228, 0.925) 0%);
         transition: 1s ease;
     }
     25% {
-        background: linear-gradient(315deg, var(--theme-color) 75%, rgba(56, 162, 228, 0.925) 25%);
+        background: linear-gradient(315deg, rgba(174, 220, 248, 0.925) 75%, rgba(56, 162, 228, 0.925) 25%);
         transition: 1s ease;
     }
     50% {
-        background: linear-gradient(315deg, var(--theme-color) 50%, rgba(56, 162, 228, 0.925) 50%);
+        background: linear-gradient(315deg, rgba(174, 220, 248, 0.925) 50%, rgba(56, 162, 228, 0.925) 50%);
         transition: 1s ease;
     }
     75% {
-        background: linear-gradient(315deg, var(--theme-color) 25%, rgba(59, 150, 206, 0.582) 75%);
+        background: linear-gradient(315deg, rgba(174, 220, 248, 0.925) 25%, rgba(59, 150, 206, 0.582) 75%);
         transition: 1s ease;
     }
     100% {
         transition: 1s ease;
-        background: linear-gradient(315deg, var(--theme-color) 0%, rgba(59, 150, 206, 0.582) 100%);
+        background: linear-gradient(315deg, rgba(174, 220, 248, 0.925) 0%, rgba(59, 150, 206, 0.582) 100%);
     }
 }
 

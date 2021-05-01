@@ -249,20 +249,6 @@ session_start();
     </footer>
     <script src="https://kit.fontawesome.com/27878f914f.js" crossorigin="anonymous"></script>
     <script>
-    let sendOTP = (email, subject, OTP, accountVerification, callBack) => {
-        Email.send({
-            Host: "smtp.gmail.com",
-            Username: "helpinghands032021@gmail.com",
-            Password: "mcflonomcfloonyloo",
-            To: email + "",
-            From: "helpinghands032021@gmail.com",
-            Subject: subject,
-            Body: "<h1>OTP: " + OTP + "</h1>"
-        }).then(() => {
-            callBack(email, OTP, accountVerification);
-        });
-    }
-
     // callback function to verify the account 
     let ajaxAccountVerificationRequest = (userEmail, otp, accountVerification) => {
         $.ajax({
@@ -279,6 +265,20 @@ session_start();
         });
     }
 
+    let sendOTP = (email, subject, OTP, accountVerification, callBack) => {
+        Email.send({
+            Host: "smtp.gmail.com",
+            Username: "helpinghands032021@gmail.com",
+            Password: "mcflonomcfloonyloo",
+            To: email + "",
+            From: "helpinghands032021@gmail.com",
+            Subject: subject,
+            Body: "<h1>OTP: " + OTP + "</h1>"
+        }).then(() => {
+            callBack(email, OTP, accountVerification);
+        });
+    }
+
     let toggleMessageBox = () => {
         console.log("closed");
         document.getElementById("messageBox").classList.remove("active");
@@ -292,6 +292,7 @@ session_start();
     document.getElementById('fetchForgotFormData').addEventListener('click', () => {
         let email = document.getElementById('forgotEmail').value;
         let otp = Math.floor(Math.random() * (999999 - 100000 + 1));
+        console.log(otp);
         sendOTP(email, "Account Recovery", otp, 0, ajaxAccountVerificationRequest);
         //setTimeout(ajaxAccountVerificationRequest(email, otp), 1000);
     });
@@ -300,6 +301,7 @@ session_start();
         let userEmail = document.getElementById('userVerificationEmail').innerText;
         // console.log(userEmail);
         let otp = Math.floor(Math.random() * (999999 - 100000 + 1));
+        console.log(otp);
         sendOTP(userEmail, "Account Verification", otp, 1, ajaxAccountVerificationRequest);
         // setTimeout(ajaxAccountVerificationRequest(userEmail, otp, 1), 1000);
     }

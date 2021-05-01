@@ -1,75 +1,4 @@
 <?php
-/*
-    require '../phpmailer/PHPMailerAutoload.php';
-    require '../phpmailer/accountCredentials.php';
-
-    // user email address
-    $email = $_POST['forgotEmail'];
-
-    $mail = new PHPMailer;
-    $mail->isSMTP();
-    $mail->Host = 'smtp.gmail.com';
-    $mail->Port = 587; //587
-    $mail->SMTPAuth = true;
-    $mail->SMTPSecure = 'tsl';
-
-    $mail->Username=ADMIN_EMAIL;
-    $mail->Password = ADMIN_PASSWORD;
-    
-    $mail->setFrom(ADMIN_EMAIL, "Helping Hands");
-    $mail->addAddress($email);
-    $mail->addReplyTo(ADMIN_EMAIL);
-    $mail->isHTML(true);
-    $mail->Subject = "Recover Password";
-    $mail->Body = '<h2>OTP: </h2>123456';
-
-    if(isset($_POST['recoverAccountSubmit'])){
-        if(!$mail->send()){
-            echo "failed to send request\n";
-            echo $mail->ErrorInfo;
-        }else{
-            echo "sent";
-        }
-    }
-*/
-/*
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-    
-    require '../mailComposer/vendor/autoload.php';
-    require '../phpmailer/accountCredentials.php';
-
-    if(isset($_POST['recoverAccountSubmit'])){
-        $email = $_POST['forgotEmail'];
-        $mail = new PHPMailer(true);
-
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->Port = 587; //587
-        $mail->SMTPAuth = true;
-        $mail->SMTPSecure = 'tls';
-
-        $mail->Username=ADMIN_EMAIL;
-        $mail->Password = ADMIN_PASSWORD;
-        
-        $mail->setFrom(ADMIN_EMAIL, "Helping Hands");
-        $mail->addAddress($email);
-        $mail->addReplyTo(ADMIN_EMAIL);
-        $mail->isHTML(true);
-        $mail->Subject = "Recover Password";
-        $mail->Body = '<h2>OTP: </h2>123456';
-
-        if(!$mail->send()){
-            echo "failed to send request\n";
-            echo $mail->ErrorInfo;
-        }else{
-            echo "sent";
-        }
-    }
-  */  
-?>
-
-<?php
     $currentFileName = explode('/', $_SERVER['PHP_SELF']);
     $currentFileName = explode('.', end($currentFileName));
     $currentFileName = $currentFileName[0];
@@ -84,7 +13,7 @@ $accountVerification = (int)($_SESSION['accountVerification']);
 $userEmail = (string)$_SESSION['tempEmail'];
 
 if(isset($_POST['submit'])){
-    if($_SESSION['tempOTP'] == $_POST['one-time-password']){
+    if((string)$_SESSION['tempOTP'] == (string)$_POST['one-time-password']){
         if($accountVerification){
             if($sqlConnection->query("UPDATE donatorcred SET emailVerified=1 WHERE email='$userEmail';")){
                 $sqlConnection->query("UPDATE ngocred SET emailVerified=1 WHERE email='$userEmail';");
@@ -95,7 +24,7 @@ if(isset($_POST['submit'])){
         }
     }else{
         $errorDisplay=true;
-        $error="Incorrect OTP Please Try Again".$_SESSION['tempOTP'];
+        $error="Incorrect OTP Please Try Again";
     }
 }
 ?>
